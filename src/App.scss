@@ -1,0 +1,50 @@
+*{
+  margin: 0;
+  padding:0;
+  box-sizing: border-box;
+}
+a{
+  text-decoration: none;
+}
+
+/* Color Theme Swatches in Hex */
+$pageBackground: rgb(229, 232, 238);
+$secondaryColor: rgb(64, 172, 255);
+$textColor: rgb(132, 224, 120);
+$accentColor: rgb(66, 43, 151);
+$buttonColor: #D99A4E;
+
+
+//FONTS
+$headerFont: 'Roboto Mono', monospace;
+$subHeaderFont: 'Belleza', sans-serif;
+$textFont: 'Scheherazade', serif;
+
+/// mixin
+@mixin pageCenter ($pagewidth){
+display: flex;
+flex-direction:column;
+justify-content: center;
+align-items: center;
+background: $pageBackground;
+width:$pagewidth;
+}
+
+@mixin pageHader {
+  font-family: $subHeaderFont;
+  font-size: 40px;
+}
+
+
+
+
+.App{
+  @include pageCenter(100%);
+  
+}
+
+// refer to mixin with @include flexCenter
+
+// Inheritance - 
+
+

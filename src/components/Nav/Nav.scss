@@ -1,0 +1,30 @@
+@import '../../App.scss';
+
+.navbar{
+  width: 100%;
+  background-color: $accentColor;
+  height: 4vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 30px;
+  padding-left: 30px;
+
+  h1{
+    font-family: $headerFont;
+    color: $secondaryColor;
+    font-size: 50px;
+  }
+
+  button {
+    color: $secondaryColor;
+    background-color: transparent;
+    border: none;
+    padding: 30px;
+    font-size: 20px;
+  }
+}
+
+
+
+

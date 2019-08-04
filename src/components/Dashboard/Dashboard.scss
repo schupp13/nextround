@@ -1,0 +1,39 @@
+@import '../../App.scss';
+
+
+.DashboardPage{
+  @include pageCenter(90%);
+
+  .pageHeader{
+    @include pageHader();
+  }
+  .filterDiv{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .drinkContainer{
+    max-width: 100%;
+    display:flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    .drink{
+      width: 350px;
+      margin: 15px;
+      display: flex;
+      border-radius: 15px;
+      padding: 15px;
+      justify-content: space-between;
+      align-items: center;
+      border: 2px solid $accentColor;
+      background-color: $secondaryColor;
+      img{
+        border-radius: 15px;
+        
+        width: 40%;
+      }
+      
+    }  
+  }
+}
