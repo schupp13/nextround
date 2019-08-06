@@ -47,16 +47,17 @@ class Drink extends Component{
   }
 
   render(){
-    
+    console.log(this.state.measurements)
+    let ingredients = this.state.ingredients.map((res, index) =>{
+      return <li>{this.state.measurements[index]}-{res}<i class="fas fa-window-close"></i></li>
+    })
     return(
     <div>
       <h1>{this.state.drinkName}</h1>
       <img src={this.state.image} />
-
-      <h3>{this.state.instructions}</h3>
-
+      <p>{this.state.instructions}</p>
       <ul>
-        {}
+        {ingredients}
       </ul>
     </div>
     )

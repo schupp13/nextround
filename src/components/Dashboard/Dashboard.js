@@ -18,7 +18,7 @@ class Dashboard extends Component {
    getDrinks =() =>{
     axios.get('https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Ordinary_Drink').then( res =>{
       console.log(res.data.drinks)
-      this.setState({drinks: res.data.drinks})
+      this.setState({drinks: res.data.drinks, filterDrinks: res.data.drinks})
     });
   }
 
@@ -41,27 +41,22 @@ class Dashboard extends Component {
     console.log(cool)
     axios.get(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${cool}`).then( res =>{
       console.log(res.data.drinks)
-      this.setState({drinks: res.data.drinks})
+      this.setState({drinks: res.data.drinks, filterDrinks: res.data.drinks})
     });
     }
 
-    updateFilter =(value)=>{
-      this.setState({
-        filterDrinks: value
-      })
-    }
+   
 
     handleChange=(e)=>{
+    
+      let filterList = this.state.drinks.filter( res =>{
+        console.log(e.target.value)
+          return res.strDrink.toLowerCase().search(e.target.value) !== -1     
+      })
+      console.log(filterList)
       this.setState({
-        filterDrinks: [...this.state.drinks],
+        filterDrinks: filterList
       })
-      console.log(this.state.filterDrinks)
-
-      let filterList = this.state.filterDrinks.filter( res =>{
-        return  res.strDrink.toLowerCase().search(e.target.value) != -1     
-      })
-      console.log(filterList);
-      this.updateFilter(filterList);
      
     }
 
@@ -76,23 +71,20 @@ class Dashboard extends Component {
     }
 
   render(){
-    const drinks = this.state.drinks.map(one =>{
-    return (  
-      <Link to={`/drink/${one.idDrink}`} style={{ textDecoration: 'none'}}>
+    const filteredDrinks = this.state.filterDrinks.map(res =>{
+     return ( <Link to={`/drink/${res.idDrink}`} style={{ textDecoration: 'none'}}>
+      <div>
+        <div className='drink'>
         <div>
-          <div className='drink'>
-          <div>
-            <p>{one.idDrink}</p>
-            <h2>{one.strDrink}</h2>
-          </div>
-            <img src={one.strDrinkThumb}/> 
-          </div>
-         
-          </div>
-          </Link>
-      )
-    
-    });
+          <p>{res.idDrink}</p>
+          <h2>{res.strDrink}</h2>
+        </div>
+          <img src={res.strDrinkThumb}/> 
+        </div>
+       
+        </div>
+        </Link>)
+    })
    
     return (
       <div className={'DashboardPage'}>
@@ -103,7 +95,7 @@ class Dashboard extends Component {
         </div>
         <input placeholder='search' onChange={this.handleChange}/>
         <div className='drinkContainer'>
-          {drinks}   
+          {filteredDrinks}   
         </div>
       </div>
     )

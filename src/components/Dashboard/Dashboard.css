@@ -123,6 +123,10 @@ a {
       flex-wrap: wrap;
 }
 
+.DashboardPage .drinkContainer a {
+  color: black;
+}
+
 .DashboardPage .drinkContainer a:link {
   text-decoration: none;
 }
@@ -131,6 +135,7 @@ a {
   -webkit-transform: scale(0.9);
           transform: scale(0.9);
   text-decoration: none;
+  color: black;
 }
 
 .DashboardPage .drinkContainer .drink {
