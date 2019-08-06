@@ -2,28 +2,80 @@
 
 
 .DashboardPage{
-  @include pageCenter(90%);
+  @include pageCenter(100%);
+  min-height: 100vh;
 
   .pageHeader{
-    @include pageHader();
+    @include pageHeader();
   }
   .filterDiv{
-    width: 100%;
+    margin: 10px;
+    width: 70%;
     display: flex;
+    flex-direction: row;
     justify-content: space-evenly;
+    flex-wrap: wrap;
+    i{
+      font-size: 50px;
+      justify-self: center;
+      align-self: center;
+      
+    }
+    .bottles{
+      min-width: 20px;
+      display: flex;
+      flex-direction: column-reverse;
+      justify-content: center;
+      align-items: center;
+      
+
+      img{
+        width: 100px;
+      }
+
+
+      h3{
+        display: hidden;
+      }
+    }
+
+   .bottles:hover{
+     transform: scale(1.2);
+     cursor: pointer;
+   }
+  }
+  input{
+    width: 50%;
+    height: 30px;
+    font-size: 20px;
+    border-radius: 15px;
+    padding: 15px;
+
   }
 
   .drinkContainer{
-    max-width: 100%;
+    max-width: 70%;
     display:flex;
-    justify-content: center;
+    justify-content: space-evenly;
+    align-items: center;
     flex-wrap: wrap;
+
+    a:link {
+      text-decoration: none;
+    }
+    
+    a:active{
+      transform: scale(.9);
+      text-decoration: none;
+    }
     .drink{
+     
       width: 350px;
+      height: 150px;
       margin: 15px;
-      display: flex;
       border-radius: 15px;
       padding: 15px;
+      display: flex;
       justify-content: space-between;
       align-items: center;
       border: 2px solid $accentColor;
@@ -35,5 +87,22 @@
       }
       
     }  
+  }
+}
+
+@media (max-width: 800px){
+  .DashboardPage{
+    width: 100%;
+  }
+  
+
+  .filterDiv{
+    min-width: 100%;
+    .drinkContainer{
+      min-width: 100%;
+      .drink{
+        width:50px;
+      }
+    }
   }
 }

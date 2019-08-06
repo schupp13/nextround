@@ -1,15 +1,17 @@
 import React , {Component} from 'react';
 import axios from 'axios';
-import './Dashboard.scss'
+import './Dashboard.scss';
+import {Link} from 'react-router-dom';
 
 class Dashboard extends Component {
   constructor(){
     super()
     this.state={
-      
+      topics: ['Beer', 'Bourbon', 'Gin', 'Rum', 'Tequila', 'vodka','whisky'], 
       drinks: [],
-    
-      filterDrinks: []
+      filterDrinks: [],
+      bottles: '',
+      hideForm: false
     }
   }
 
@@ -20,8 +22,18 @@ class Dashboard extends Component {
     });
   }
 
+  buildBottles = ()=>{
+   let bottles =  this.state.topics.map( res =>{
+     return <div className={'bottles'}> <h3>{res}</h3> <img  onClick={this.handleClick} src={`https://www.thecocktaildb.com/images/ingredients/${res}.png`} name={res} /></div>
+    })
+    this.setState({
+      bottles: bottles
+    })
+  }
+
   componentDidMount(){
     this.getDrinks();
+    this.buildBottles();
   }
 
   handleClick=(e)=>{
@@ -53,35 +65,45 @@ class Dashboard extends Component {
      
     }
 
+    customForm =(id)=>{
+      axios.get(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`).then(res =>{
+        console.log(res.data.drinks)
+        this.setState({
+          hideForm: !this.state.hideForm
+        })
+        console.log(this.state.hideForm)
+      })
+    }
+
   render(){
     const drinks = this.state.drinks.map(one =>{
     return (  
+      <Link to={`/drink/${one.idDrink}`} style={{ textDecoration: 'none'}}>
+        <div>
           <div className='drink'>
           <div>
             <p>{one.idDrink}</p>
             <h2>{one.strDrink}</h2>
           </div>
-            <img src={one.strDrinkThumb}/>
+            <img src={one.strDrinkThumb}/> 
           </div>
+         
+          </div>
+          </Link>
       )
     
     });
    
-    console.log(this.state.catagories)
     return (
       <div className={'DashboardPage'}>
-      
-        <h1 className={'pageHeader'}>Dashboard</h1>
-        <input onChange={this.handleChange}/>
+        <h1 className={'pageHeader'}>Dashboard</h1>  
         <div className={'filterDiv'}>
-          <button onClick={this.handleClick} name={'Vodka'}>Vodka</button>
-          <button onClick={this.handleClick} name={'Rum'}>Rum</button>
-          <button onClick={this.handleClick} name={'Tequila'}>Tequila</button>
-          <button onClick={this.handleClick} name={'Gin'}>Gin</button>
+        <i class="fas fa-random" onClick={this.getDrinks}></i>
+        {this.state.bottles}  
         </div>
-        
+        <input placeholder='search' onChange={this.handleChange}/>
         <div className='drinkContainer'>
-          {drinks}
+          {drinks}   
         </div>
       </div>
     )

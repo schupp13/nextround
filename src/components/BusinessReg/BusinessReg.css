@@ -1,1 +1,149 @@
-/* No CSS *//*# sourceMappingURL=BusinessReg.css.map */
+/* Color Theme Swatches in Hex */
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: "Scheherazade", serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+.App {
+  min-width: 100vw;
+  min-height: 100vh;
+  background-color: #e5e8ee;
+}
+
+.BusinessReg {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #e5e8ee;
+  width: 100%;
+  height: 80%;
+  min-height: 100%;
+}
+
+.BusinessReg .pageHeader {
+  font-family: "Belleza", sans-serif;
+  font-size: 50px;
+  margin: 30px;
+}
+
+.BusinessReg form {
+  border-radius: 15px;
+  width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #422b97;
+  color: #40acff;
+  border: 2px solid #40acff;
+  font-size: 30px;
+  margin-top: 30px;
+}
+
+.BusinessReg form h1 {
+  font-size: 35px;
+  margin: 10px;
+  overflow-wrap: normal;
+}
+
+.BusinessReg form h2 {
+  font-size: 35px;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  margin-left: 30px;
+}
+
+.BusinessReg form .submitButton {
+  padding: 10px;
+  border-radius: 15px;
+  border: 2px solid #40acff;
+  width: 30%;
+  margin: 30px 0;
+  text-align: center;
+}
+
+.BusinessReg form .submitButton:hover {
+  cursor: pointer;
+}
+
+.BusinessReg form label {
+  color: white;
+  margin: 8px;
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.BusinessReg form label input {
+  border-radius: 15px;
+  width: 50%;
+  height: 30px;
+  font-size: 25px;
+  padding: 15px;
+}
+
+.BusinessReg form label textarea {
+  border-radius: 15px;
+  width: 50%;
+  font-size: 25px;
+  padding: 15px;
+}
+
+@media (max-width: 800px) {
+  h1 {
+    width: 80%;
+  }
+  form {
+    min-width: 90%;
+  }
+  form h1 {
+    font-size: 30px;
+  }
+  form label {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    width: 100%;
+  }
+  form label input {
+    min-width: 100%;
+  }
+  form label textarea {
+    min-width: 100%;
+  }
+}
+/*# sourceMappingURL=BusinessReg.css.map */

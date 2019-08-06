@@ -1,10 +1,10 @@
 @import '../../App.scss';
 
-
-
 .landingPageDiv{
 width: 100%;
 display:flex;
+
+
 height: 96vh;
 justify-content: center;
 align-content: center;
@@ -16,21 +16,61 @@ align-content: center;
     align-items: center;
     width: 50%;
     i{
-      font-size: 2000%;
+      font-size: 300px;
+      color: black
     }
-    button{
+    h1{
       background-color: transparent;
       border: none;
       font-size: 30px;
+      color: black;
+      
     }
+    a:hover i{
+      border: 10px solid black;
+      border-radius: 15px;
+    }
+    a:active i {
+      color: black;
+      transform: scale(.8);
+      border-radius: 100%;
+      border: 10px solid black;
+      padding: 20px;
+      
+    }  
+   
 }
   .businessDiv{
     background-color: #3876E8;
-    background-image: url()
   }
-
 
   .publicDiv{  
-    background-color: white;
+    background-color: $pageBackground;
   }
+}
+
+
+@media (max-width: 800px){
+  .landingPageDiv{
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    
+    .businessDiv, .publicDiv {
+      width: 100%;
+      height: 50%;
+      i{
+        width:80%;
+      }
+      
+      // h1{
+      //  display: none;
+      // }
+  }
+  }
+
+  .landingPageDiv div:first-child {
+    order: 2;
+  }
+ 
 }

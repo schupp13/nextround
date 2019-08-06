@@ -11,26 +11,24 @@ class Landing extends Component{
   }
 
 
-  componentDidMount(){
   
-  }
 
   render(){
     return(
       <section className={'landingPageDiv'}>
-      
         <div className={'businessDiv'}>
-        <Link to='/BusinessReg'>
-        <i class="material-icons">business</i>
+        <Link to='/BusinessReg'style={{ textDecoration: 'none' }}>
+        <i class="material-icons">business</i>  
           <h1>Start Advertising</h1>
           </Link>
         </div>
       
 
         <div className={'publicDiv'}>
-        <i class="material-icons">local_drink</i>
+        <Link>
+          <i class="material-icons">local_drink</i>
           <h1>Find a Hapy Hour Near You</h1>
-          
+        </Link> 
         </div>
       </section>
     )

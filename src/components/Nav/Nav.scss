@@ -3,28 +3,133 @@
 .navbar{
   width: 100%;
   background-color: $accentColor;
-  height: 4vw;
+  height:10%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-right: 30px;
-  padding-left: 30px;
+  font-size: 25px;
+  padding: 10px;
+  margin-right: 30px;
 
+  .hamburger{
+    display: none;
+    i{
+      font-size: 40px;
+    }
+    
+  }
+  .menuDivMobileOn{
+    display: none;
+  }
+  .menuDivMobileOff{
+    display:none;
+  }
+
+  .check{
+    display: none;
+  }
+  
   h1{
+    margin-left: 30px;
     font-family: $headerFont;
     color: $secondaryColor;
-    font-size: 50px;
+   
   }
 
   button {
     color: $secondaryColor;
     background-color: transparent;
     border: none;
-    padding: 30px;
-    font-size: 20px;
+    margin-right: 30px;
+    font-size: 25px;
+    height: 100%;
+    padding: 20px;
+    font-family: $subHeaderFont;
+    
   }
 }
 
 
 
+@media (max-width: 800px){
+  .navbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 
+    h1{
+    
+     
+    }
+    
+
+    .hamburger{
+      display: block;
+      margin-right: 30px;
+      animation-name: 'mobile';
+      animation-duration: 2s;
+    }
+
+    .menuDivMobileOff{
+      
+      display:flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 0;
+      overflow: hidden;
+      align-items: center;
+      position: absolute;
+      top: 8.5%;
+      width: 100%;
+      background-color: $accentColor;
+      border: 2px solid $secondaryColor;
+      border-radius: 10px;
+      animation: mobileOff 1s linear;
+    }
+
+    .menuDivMobileOn{
+      display:flex;
+      height: 500px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 8.5%;
+      width: 100%;
+      background-color: $accentColor;
+      border: 2px solid $secondaryColor;
+      border-radius: 10px;
+      animation: mobile 1s linear;
+    }
+
+    .menuDiv{
+      display:none;
+    } 
+    
+  }  
+}
+
+
+@keyframes mobile{
+  from{
+    height: 0%;
+    overflow: hidden;
+  }
+  to{
+    
+    height: 500px;
+  }
+}
+
+  @keyframes mobileOff{
+    from{
+      height: 500px;
+    }
+    to{
+      height: 0px;
+      overflow: hidden;
+      display: none
+      
+    }
+  }

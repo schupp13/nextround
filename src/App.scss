@@ -1,12 +1,3 @@
-*{
-  margin: 0;
-  padding:0;
-  box-sizing: border-box;
-}
-a{
-  text-decoration: none;
-}
-
 /* Color Theme Swatches in Hex */
 $pageBackground: rgb(229, 232, 238);
 $secondaryColor: rgb(64, 172, 255);
@@ -20,27 +11,37 @@ $headerFont: 'Roboto Mono', monospace;
 $subHeaderFont: 'Belleza', sans-serif;
 $textFont: 'Scheherazade', serif;
 
+*{
+  margin: 0;
+  padding:0;
+  box-sizing: border-box;
+  font-family: $textFont;
+}
+a{
+  text-decoration: none;
+}
+
 /// mixin
 @mixin pageCenter ($pagewidth){
 display: flex;
 flex-direction:column;
-justify-content: center;
+justify-content: flex-start;
 align-items: center;
 background: $pageBackground;
 width:$pagewidth;
+height:80%;
 }
 
-@mixin pageHader {
+@mixin pageHeader {
   font-family: $subHeaderFont;
-  font-size: 40px;
+  font-size: 50px;
+  margin: 30px;
 }
-
-
-
 
 .App{
-  @include pageCenter(100%);
-  
+min-width:100vw;
+min-height: 100vh;
+background-color: $pageBackground;
 }
 
 // refer to mixin with @include flexCenter
