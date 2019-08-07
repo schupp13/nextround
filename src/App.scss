@@ -1,15 +1,14 @@
 /* Color Theme Swatches in Hex */
 $pageBackground: rgb(229, 232, 238);
 $secondaryColor: rgb(64, 172, 255);
-$textColor: rgb(132, 224, 120);
-$accentColor: rgb(66, 43, 151);
+$accentColor: #2955D9;
 $buttonColor: #D99A4E;
 
 
 //FONTS
 $headerFont: 'Roboto Mono', monospace;
 $subHeaderFont: 'Belleza', sans-serif;
-$textFont: 'Scheherazade', serif;
+$textFont:'Roboto', sans-serif;
 
 *{
   margin: 0;
@@ -30,6 +29,8 @@ align-items: center;
 background: $pageBackground;
 width:$pagewidth;
 height:80%;
+ padding-top: 60px;
+
 }
 
 @mixin pageHeader {
@@ -39,9 +40,9 @@ height:80%;
 }
 
 .App{
-min-width:100vw;
-min-height: 100vh;
-background-color: $pageBackground;
+  min-width:100vw;
+  min-height: 100vh;
+  background-color: $pageBackground;
 }
 
 // refer to mixin with @include flexCenter

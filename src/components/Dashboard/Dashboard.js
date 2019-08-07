@@ -48,7 +48,6 @@ class Dashboard extends Component {
    
 
     handleChange=(e)=>{
-    
       let filterList = this.state.drinks.filter( res =>{
         console.log(e.target.value)
           return res.strDrink.toLowerCase().search(e.target.value) !== -1     
@@ -57,7 +56,7 @@ class Dashboard extends Component {
       this.setState({
         filterDrinks: filterList
       })
-     
+  
     }
 
     customForm =(id)=>{

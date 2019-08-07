@@ -18,7 +18,7 @@ class Landing extends Component{
       <section className={'landingPageDiv'}>
         <div className={'businessDiv'}>
         <Link to='/BusinessReg'style={{ textDecoration: 'none' }}>
-        <i class="material-icons">business</i>  
+        <i class="fas fa-store"></i>  
           <h1>Start Advertising</h1>
           </Link>
         </div>
@@ -26,8 +26,8 @@ class Landing extends Component{
 
         <div className={'publicDiv'}>
         <Link>
-          <i class="material-icons">local_drink</i>
-          <h1>Find a Hapy Hour Near You</h1>
+        <i class="fas fa-cocktail"></i>
+          <h1>Find a Drink</h1>
         </Link> 
         </div>
       </section>

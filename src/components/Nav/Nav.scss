@@ -3,13 +3,16 @@
 .navbar{
   width: 100%;
   background-color: $accentColor;
-  height:10%;
+  height:70px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 25px;
   padding: 10px;
   margin-right: 30px;
+  position: fixed;
+  top: 0;
+  
 
   .hamburger{
     display: none;
@@ -57,6 +60,9 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    position: fixed;
+    width:100vw;
+    
 
     h1{
     
@@ -65,10 +71,12 @@
     
 
     .hamburger{
+
       display: block;
       margin-right: 30px;
       animation-name: 'mobile';
       animation-duration: 2s;
+
     }
 
     .menuDivMobileOff{
@@ -80,12 +88,14 @@
       overflow: hidden;
       align-items: center;
       position: absolute;
-      top: 8.5%;
-      width: 100%;
+      top: 70px;
+      width: 100vw;
       background-color: $accentColor;
       border: 2px solid $secondaryColor;
       border-radius: 10px;
-      animation: mobileOff 1s linear;
+      animation: mobileOff .5s linear;
+      margin: 0
+
     }
 
     .menuDivMobileOn{
@@ -95,16 +105,20 @@
       justify-content: center;
       align-items: center;
       position: absolute;
-      top: 8.5%;
+      top: 70px;
       width: 100%;
       background-color: $accentColor;
       border: 2px solid $secondaryColor;
       border-radius: 10px;
-      animation: mobile 1s linear;
+      animation: mobile .5s linear;
+      
     }
 
     .menuDiv{
       display:none;
+      position: absolute;
+      top: 70px;
+      width: 100%;
     } 
     
   }  

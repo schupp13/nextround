@@ -3,9 +3,7 @@
 .landingPageDiv{
 width: 100%;
 display:flex;
-
-
-height: 96vh;
+min-height: 100vh;
 justify-content: center;
 align-content: center;
 
@@ -17,35 +15,41 @@ align-content: center;
     width: 50%;
     i{
       font-size: 300px;
-      color: black
+      color: $secondaryColor
     }
     h1{
       background-color: transparent;
       border: none;
-      font-size: 30px;
-      color: black;
-      
+      font-size: 20px;
+      color: $secondaryColor;
+      text-align: center;
+      margin-top: 20px;
     }
     a:hover i{
-      border: 10px solid black;
+
+      color: $secondaryColor;
       border-radius: 15px;
+      
     }
     a:active i {
-      color: black;
+      color: white;
       transform: scale(.8);
       border-radius: 100%;
-      border: 10px solid black;
+      background-color: $accentColor;
       padding: 20px;
       
     }  
    
 }
   .businessDiv{
-    background-color: #3876E8;
+    background-color: $accentColor;
   }
 
   .publicDiv{  
     background-color: $pageBackground;
+    h1{
+      margin-right: 90px;
+    }
   }
 }
 
@@ -54,18 +58,26 @@ align-content: center;
   .landingPageDiv{
     display: flex;
     flex-direction: column;
-    min-height: 100%;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin-top: 70px;
+    max-width: 100vw;
+  
     
     .businessDiv, .publicDiv {
-      width: 100%;
-      height: 50%;
+      width: 100vw;
+      min-height: 50vh;
+     
+      
       i{
         width:80%;
       }
+      h1{
+        width: 100%;
+      }
       
-      // h1{
-      //  display: none;
-      // }
+      
   }
   }
 

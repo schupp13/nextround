@@ -1,0 +1,129 @@
+@import '../../App.scss';
+
+.drinkPageDiv{
+@include pageCenter(100%);
+.drinkName{
+  @include pageHeader();
+}
+
+button{
+ height: 50px;
+ border-radius: 15px;
+ background-color: $accentColor;
+ color: white;
+ padding: 5px;
+ margin: 10px;
+}
+
+.drinkDiv{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: solid blue 2px;
+  width: 50%;
+  color: white;
+  background-color: $secondaryColor;
+  border-radius: 15px;
+  padding: 30px;
+  flex-wrap: wrap;
+  .displayDiv{
+    width: 40%;
+    .drinkImage{
+      width: 100%;
+      border-radius: 15px;  
+    }
+    .drinkInstructions{
+      padding:10px;
+      width:100%;
+      font-size: 15px;  
+      line-height: 20px; 
+    }
+  }
+  .ingredientsDiv{
+    width: 35%;
+    
+    .drinkIngredients{
+      display: flex;
+      flex-direction: column;
+      height: 250px;
+      width: 100%;
+      justify-content: space-evenly;
+      li{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 30px;
+        border-radius: 15px;
+        margin: 3px;
+        padding: 10px;
+        background-color: $accentColor;
+      }
+   
+    }
+  }
+
+  .updateDiv{
+    display:flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    div{
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      color: $accentColor;
+      font-family: $headerFont;
+
+      input{
+        width: 80%;
+        margin: 10px;
+        border-radius: 15px;
+        padding: 5px;
+      }
+      button{
+        width: 40%;
+        margin: 10px;
+        border-radius: 15px;
+        padding: 5px;
+      }
+    }
+  }
+}
+
+  
+}
+
+@media (max-width: 800px){
+  .drinkPageDiv{
+    .drinkName{
+      width: 100%;
+      font-size: 30px;
+      text-align: center;
+    }
+    width: 100%;
+    .drinkDiv{
+      width:100%;
+      .displayDiv{
+        width: 100%;
+      }
+      .ingredientsDiv{
+        width: 100%;
+        margin-top: 30px;
+        margin-bottom: 30px;
+      }
+      .updateDiv{
+        width: 100%;
+        display:flex;
+        flex-direction: column;
+        
+      }
+
+      .updateDiv:firstChild(){
+        order: 2;
+      }
+    }
+  }
+  
+
+}

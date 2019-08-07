@@ -37,7 +37,7 @@ menu
     </div>
     <div className={'menuDiv'}>
      <button>Home</button>
-     <Link to={'/dashboard'}><button>Dashboard</button></Link>
+     <Link to={'/dashboard'}><button onClick={this.handleClick}>Dashboard</button></Link>
      <button>Login</button>
      </div>
 

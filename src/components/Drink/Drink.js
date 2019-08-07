@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import { thisExpression } from '@babel/types';
+import './Drink.scss'
+import Ingredients from '../Ingredients/Ingredients'
+
 
 class Drink extends Component{
   constructor(){
@@ -10,7 +13,9 @@ class Drink extends Component{
       image: '',
       ingredients: [],
       measurements: [],
-      instructions: ''
+      instructions: '',
+      addIngrediant:'',
+      customName: ''
     }
   }
 
@@ -46,19 +51,71 @@ class Drink extends Component{
     })
   }
 
+  handleIngredientChange = e=>{ 
+    console.log(e.target.value)
+    
+    this.setState({
+      addIngrediant : e.target.value
+    })
+  
+  }
+  handleNameChange=(e)=>{
+   let {name, value} =  e.target;
+   this.setState({
+     [name]: value
+   })    
+  }
+  handleIngredientClick=(e)=>{
+    this.setState({
+      ingredients: [... this.state.ingredients, this.state.addIngrediant],
+      addIngrediant: '' 
+    })
+  
+    
+  }
+
+  handleClick=(index)=>{
+    console.log(index);
+    console.log('hello')
+    let array = [...this.state.ingredients ];
+    array.splice(index, 1)
+    let array2 = [...this.state.measurements]
+    array2.splice(index, 1)
+    this.setState({
+      "ingredients": array,
+      "measurements": array2
+    })
+  }
+
   render(){
-    console.log(this.state.measurements)
-    let ingredients = this.state.ingredients.map((res, index) =>{
-      return <li>{this.state.measurements[index]}-{res}<i class="fas fa-window-close"></i></li>
+    let ingredientsList = this.state.ingredients.map((ingredient, index) =>{
+     return <Ingredients name={'ingredients'} ingredient={ingredient} measurement={this.state.measurements[index]} handleClick={()=>this.handleClick(index)}/>
     })
     return(
-    <div>
-      <h1>{this.state.drinkName}</h1>
-      <img src={this.state.image} />
-      <p>{this.state.instructions}</p>
-      <ul>
-        {ingredients}
-      </ul>
+    <div className='drinkPageDiv'>
+      <h1 className='drinkName'>{this.state.drinkName}</h1>
+      <div className='drinkDiv'>
+        <div className='displayDiv'>
+          <img src={this.state.image} className='drinkImage' />
+          <p className='drinkInstructions'>{this.state.instructions}</p>      
+        </div>
+        <div className='ingredientsDiv'>
+        <ul className='drinkIngredients'>
+            {ingredientsList}
+        </ul>
+        </div>
+        <div className='updateDiv'>
+          <div className='changeName'>
+            <label> Change Name</label>
+            <input name='drinkName' onChange={this.handleNameChange} name='drinkName' placeholder={this.state.drinkName} ></input>
+          </div>
+          <div className='addIngredient'>
+            <label> Add Ingredient </label>
+            <input onChange={this.handleIngredientChange} name='customName' placeholder='add an ingredient' value={this.state.addIngrediant}></input>
+            <button onClick={this.handleIngredientClick} name='customName'>Add Ingredient</button>
+          </div>
+          </div>
+        </div>
     </div>
     )
   }
