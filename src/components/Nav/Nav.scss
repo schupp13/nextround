@@ -1,9 +1,9 @@
 @import '../../App.scss';
 
-.navbar{
+.navbar {
   width: 100%;
   background-color: $accentColor;
-  height:70px;
+  height: 70px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -12,31 +12,42 @@
   margin-right: 30px;
   position: fixed;
   top: 0;
-  
+  border-bottom: 2px solid $secondaryColor;
 
-  .hamburger{
+  .login {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    height: 300px;
+    width: 530px;
+  }
+
+  .hamburger {
     display: none;
-    i{
+
+    i {
       font-size: 40px;
     }
-    
-  }
-  .menuDivMobileOn{
-    display: none;
-  }
-  .menuDivMobileOff{
-    display:none;
+
   }
 
-  .check{
+  .menuDivMobileOn {
     display: none;
   }
-  
-  h1{
+
+  .menuDivMobileOff {
+    display: none;
+  }
+
+  .check {
+    display: none;
+  }
+
+  h1 {
     margin-left: 30px;
     font-family: $headerFont;
     color: $secondaryColor;
-   
+
   }
 
   button {
@@ -48,29 +59,28 @@
     height: 100%;
     padding: 20px;
     font-family: $subHeaderFont;
-    
+
   }
 }
 
 
 
-@media (max-width: 800px){
-  .navbar{
+@media (max-width: 800px) {
+  .navbar {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     position: fixed;
-    width:100vw;
-    
+    width: 100vw;
 
-    h1{
-    
-     
+
+    h1 {
+      font-size: 30px;
     }
-    
 
-    .hamburger{
+
+    .hamburger {
 
       display: block;
       margin-right: 30px;
@@ -79,9 +89,9 @@
 
     }
 
-    .menuDivMobileOff{
-      
-      display:flex;
+    .menuDivMobileOff {
+
+      display: flex;
       flex-direction: column;
       justify-content: center;
       height: 0;
@@ -94,13 +104,13 @@
       border: 2px solid $secondaryColor;
       border-radius: 10px;
       animation: mobileOff .5s linear;
-      margin: 0
-
+      margin: 0;
+      z-index: 9000;
     }
 
-    .menuDivMobileOn{
-      display:flex;
-      height: 500px;
+    .menuDivMobileOn {
+      display: flex;
+      height: 300px;
       flex-direction: column;
       justify-content: center;
       align-items: center;
@@ -111,39 +121,41 @@
       border: 2px solid $secondaryColor;
       border-radius: 10px;
       animation: mobile .5s linear;
-      
+      z-index: 9000;
     }
 
-    .menuDiv{
-      display:none;
+    .menuDiv {
+      display: none;
       position: absolute;
       top: 70px;
       width: 100%;
-    } 
-    
-  }  
+      z-index: 9000;
+    }
+
+  }
 }
 
 
-@keyframes mobile{
-  from{
+@keyframes mobile {
+  from {
     height: 0%;
     overflow: hidden;
   }
-  to{
-    
-    height: 500px;
+
+  to {
+
+    height: 300px;
   }
 }
 
-  @keyframes mobileOff{
-    from{
-      height: 500px;
-    }
-    to{
-      height: 0px;
-      overflow: hidden;
-      display: none
-      
-    }
+@keyframes mobileOff {
+  from {
+    height: 300px;
   }
+
+  to {
+    height: 0px;
+    overflow: hidden;
+    display: none
+  }
+}

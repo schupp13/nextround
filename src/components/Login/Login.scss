@@ -1,0 +1,62 @@
+@import '../../App.scss';
+
+
+.loginDiv {
+
+  height: 100%;
+  width: 100%;
+
+  #background-video {
+    position: fixed;
+    top: 70px;
+    right: 0;
+    height: 300px;
+    border: 2px solid $secondaryColor;
+    border-radius: 15px;
+  }
+
+  .overlay {
+
+    position: relative;
+    top: 80;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5);
+    color: #f1f1f1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid $secondaryColor;
+    border-radius: 15px;
+
+    form {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-end;
+
+      label {
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 70px;
+
+        width: 100%;
+
+        input {
+          width: 50%;
+          height: 30px;
+          border-radius: 15px;
+          margin: 10px;
+        }
+      }
+
+    }
+
+
+  }
+
+
+}

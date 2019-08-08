@@ -9,7 +9,7 @@
   form{
     margin-top: 40px;
     border-radius: 15px;
-    width: 30%;
+    width: 500px;
     display:flex;
     flex-direction: column;
     justify-content: center;
@@ -62,7 +62,7 @@
       textarea{
         border-radius: 15px;
         width: 50%;
-        font-size: 25px;
+        font-size: px;
         padding: 15px;
 
       }
@@ -71,29 +71,21 @@
 }
 
 @media (max-width: 800px){
-  h1{
-    width: 80%;
-  }
-form{
-  min-width: 90%;
 
-  h1{
-    font-size: 30px;
-  }
-
-  label{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    input{
-      width:30px;
-    }
-    textarea{
-      min-width: 100%;
-    }
-
-  }
-}
-
+ .BusinessReg{
+   form{
+     width: 100%;
+     label{
+       display:flex;
+       flex-direction: column;
+       input{
+         width: 100%;
+       }
+       textarea{
+         width:100%;
+       }
+     }
+   }
+ }
 
 }

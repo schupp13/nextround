@@ -1,0 +1,6 @@
+@import '../BusinessReg/BusinessReg.scss';
+
+
+.UserReg{
+  @extend .BusinessReg;
+}
