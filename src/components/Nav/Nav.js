@@ -50,9 +50,13 @@ class Nav extends Component {
             <button>Dashboard</button>
           </Link>
           <button onClick={this.changeLogin}>Login</button>
-          <div className={"login"}>
-            {this.state.hideLogin === false ? null : <Login />}
-          </div>
+
+          {this.state.hideLogin === false ? null : (
+            <div className={"login"}>
+              {" "}
+              <Login />
+            </div>
+          )}
         </div>
 
         {/* mobile */}
