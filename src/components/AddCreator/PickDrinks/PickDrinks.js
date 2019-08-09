@@ -81,9 +81,13 @@ class PickDrinks extends Component {
       <div className={"PickDrinksPage"}>
         <h1 className={"pageHeader"}>Drink Picker</h1>
         <div className="stepNav">
-          <i class="fas fa-chevron-left" />
+          <Link to="/create-ad/name">
+            <i class="fas fa-chevron-left" />
+          </Link>
           <p>Step 2 of 3</p>
-          <i class="fas fa-chevron-right" />
+          <Link to="/create-ad/confirm">
+            <i class="fas fa-chevron-right" />
+          </Link>
         </div>
         <div className={"filterDiv"}>
           <i class="fas fa-random bottles" onClick={this.props.getMix} />

@@ -8,6 +8,7 @@ import Map from "../components/Map/Map";
 import userReg from "../components/UserReg/UserReg";
 import PickDrinks from "../components/AddCreator/PickDrinks/PickDrinks";
 import NameAd from "../components/AddCreator/NameAd/NameAd";
+import ConfirmAd from "../components/AddCreator/ConfirmAd/ConfirmAd";
 
 export default (
   <Switch>
@@ -19,5 +20,6 @@ export default (
     <Route path="/userReg" component={userReg} />
     <Route path="/map" component={Map} />
     <Route path="/create-ad/name" component={NameAd} />
+    <Route path="/create-ad/confirm" component={ConfirmAd} />
   </Switch>
 );

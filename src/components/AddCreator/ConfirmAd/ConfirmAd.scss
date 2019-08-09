@@ -1,0 +1,13 @@
+@import '../../../App.scss';
+
+.ConfirmAdDiv {
+  @include pageCenter(100%);
+
+  h1 {
+    @include pageHeader();
+  }
+
+  .stepNav {
+    @include stepNav();
+  }
+}
