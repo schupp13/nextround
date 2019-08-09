@@ -2,33 +2,24 @@ import React, { Component } from "react";
 import "./Landing.scss";
 import { Link } from "react-router-dom";
 
-class Landing extends Component {
-  constructor() {
-    super();
-    this.state = {
-      drinks: []
-    };
-  }
+function Landing() {
+  return (
+    <section className={"landingPageDiv"}>
+      <div className={"businessDiv"}>
+        <Link to="/BusinessReg" style={{ textDecoration: "none" }}>
+          <i class="fas fa-store" />
+          <h1>Start Advertising</h1>
+        </Link>
+      </div>
 
-  render() {
-    return (
-      <section className={"landingPageDiv"}>
-        <div className={"businessDiv"}>
-          <Link to="/BusinessReg" style={{ textDecoration: "none" }}>
-            <i class="fas fa-store" />
-            <h1>Start Advertising</h1>
-          </Link>
-        </div>
-
-        <div className={"publicDiv"}>
-          <Link to="/userReg">
-            <i class="fas fa-cocktail" />
-            <h1>Find a Drink</h1>
-          </Link>
-        </div>
-      </section>
-    );
-  }
+      <div className={"publicDiv"}>
+        <Link to="/userReg">
+          <i class="fas fa-cocktail" />
+          <h1>Find a Drink</h1>
+        </Link>
+      </div>
+    </section>
+  );
 }
 
 export default Landing;

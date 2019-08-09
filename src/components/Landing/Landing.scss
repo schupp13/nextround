@@ -79,18 +79,28 @@
 
     .businessDiv,
     .publicDiv {
-      width: 100vw;
+      width: 100%;
       min-height: 50vh;
 
 
       i {
-        width: 80%;
+        font-size: 200px;
       }
 
       h1 {
         width: 100%;
       }
 
+
+    }
+
+    .publicDiv {
+      display: flex;
+      flex-direction: column;
+
+      h1 {
+        margin-right: 100px;
+      }
 
     }
   }

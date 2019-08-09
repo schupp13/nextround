@@ -13,6 +13,7 @@ class Nav extends Component {
   }
 
   changeLogin = () => {
+    console.log("change login hitting");
     this.setState({
       hideLogin: !this.state.hideLogin
     });
@@ -61,10 +62,18 @@ class Nav extends Component {
 
         {/* mobile */}
         <div className={this.state.className}>
-          <Link to={"/dashboard"}>
+          <Link to={"/businessDash"}>
             <button onClick={this.handleClick}>Dashboard</button>
           </Link>
-          <button onClick={this.changeLogin}>Login</button>
+
+          <button
+            onClick={() => {
+              this.changeLogin();
+              this.handleClick();
+            }}
+          >
+            Login
+          </button>
         </div>
       </nav>
     );

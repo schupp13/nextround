@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./BusinessDash.scss";
 import { Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 class BusinessDash extends Component {
   constructor() {
@@ -8,9 +9,9 @@ class BusinessDash extends Component {
     this.state = {};
   }
   render() {
-    console.log("hello");
     return (
       <div className="BusinessDashPage">
+        {this.props.business_name === "" && <Redirect to="/userDash" />}
         <h1 className="pageHeader">Business Dash</h1>
         <div className="businessProfile">
           <h2>Business Profile</h2>

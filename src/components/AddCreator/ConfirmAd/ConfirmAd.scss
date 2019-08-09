@@ -11,3 +11,17 @@
     @include stepNav();
   }
 }
+
+@media (max-width: 800px) {
+  .ConfirmAdDiv {
+    width: 100%;
+
+    h1 {
+      font-size: 30px;
+    }
+
+    .stepNav {
+      width: 100%;
+    }
+  }
+}

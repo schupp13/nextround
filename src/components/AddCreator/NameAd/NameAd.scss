@@ -33,3 +33,41 @@
     }
   }
 }
+
+@media (max-width: 800px) {
+  .NameAdDiv {
+    width: 100%;
+
+    h1 {
+      @include pageHeader();
+      font-size: 30px;
+    }
+
+    .stepNav {
+      width: 100%;
+    }
+
+    .card {
+      display: flex;
+      width: 90%;
+      border: 2px solid $accentColor;
+      border-radius: 15px;
+      background-color: $secondaryColor;
+      height: 100px;
+      align-items: center;
+      justify-content: center;
+      margin-top: 20px;
+
+
+      input {
+        border-radius: 15px;
+        width: 90%;
+        border: solid 2px $accentColor;
+        height: 50px;
+        padding: 10px;
+        font-size: 20px;
+      }
+    }
+  }
+
+}

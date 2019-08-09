@@ -24,7 +24,7 @@ class BusinessReg extends Component {
 
   register = e => {
     e.preventDefault();
-    Axios.post("/api/register", { ...this.state })
+    Axios.post("/auth/register", { ...this.state })
       .then(res => {
         console.log(res);
       })

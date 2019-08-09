@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import "./Login.scss";
 import Video from "../vid/video.mp4";
+import { connect } from "react-redux";
+import { login } from "../../redux/reducers/authReducer";
+import { Redirect } from "react-router-dom";
 
 class Login extends Component {
   constructor() {
@@ -19,12 +22,12 @@ class Login extends Component {
   login = e => {
     e.preventDefault();
     let { email, password } = this.state;
+    this.props.login(email, password);
   };
   render() {
-    console.log(this.state);
-
     return (
       <div className={"loginDiv"}>
+        {this.props.business_name && <Redirect to="/businessDash" />}
         <video id="background-video" loop autoPlay>
           <source src={Video} type="video/mp4" />
         </video>
@@ -48,6 +51,7 @@ class Login extends Component {
                 required
               />
             </label>
+            <button>Sign In</button>
           </form>
         </div>
       </div>
@@ -55,4 +59,11 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapStateToProps = reduxState => {
+  return { first_name: reduxState.authReducer.first_name };
+};
+
+export default connect(
+  mapStateToProps,
+  { login }
+)(Login);

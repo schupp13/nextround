@@ -96,8 +96,9 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border: 2px solid $accentColor;
-      background-color: $secondaryColor;
+      border: 2px solid $secondaryColor;
+      background-color: $accentColor;
+      color: $secondaryColor;
 
       img {
         border-radius: 15px;
@@ -111,20 +112,63 @@
 }
 
 @media (max-width: 800px) {
-  .DashboardPage {
+  .PickDrinksPage {
     width: 100%;
-  }
 
+    .pageHeader {
+      font-size: 30px;
+    }
 
-  .filterDiv {
-    min-width: 100%;
+    .stepNav {
+      width: 100%;
+    }
+
+    .filterDiv {
+      width: 100%;
+      margin: 0;
+
+    }
+
+    input {
+      width: 100%;
+    }
 
     .drinkContainer {
-      min-width: 100%;
 
-      .drink {
-        width: 50px;
+      display: flex;
+      flex-direction: column;
+
+      a {
+        width: 90%;
+
+        div {
+          width: 100%;
+
+          .drink {
+            width: 100%;
+            height: 100%;
+            margin: 10px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+
+            div {
+              width: 100%;
+
+            }
+
+            h3 {
+              font-size: 10px;
+            }
+          }
+        }
+
+
       }
     }
+
   }
+
+
+
 }

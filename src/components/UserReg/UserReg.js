@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./UserReg.scss";
+import axios from "axios";
 
 class BusinessReg extends Component {
   constructor() {
@@ -12,6 +13,18 @@ class BusinessReg extends Component {
     };
   }
 
+  register = e => {
+    e.preventDefault();
+    axios
+      .post("/auth/register", { ...this.state })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
@@ -20,7 +33,7 @@ class BusinessReg extends Component {
   render() {
     return (
       <div className={"UserReg"}>
-        <form>
+        <form onClick={this.register}>
           <h1 className={"pageHeader"}>Registration</h1>
           <h2>Contact Information</h2>
           <label>
@@ -33,11 +46,21 @@ class BusinessReg extends Component {
           </label>
           <label>
             Email
-            <input required onChange={this.handleChange} name="email" />
+            <input
+              required
+              type="email"
+              onChange={this.handleChange}
+              name="email"
+            />
           </label>
           <label>
             Password
-            <input required onChange={this.handleChange} name="password" />
+            <input
+              required
+              type="password"
+              onChange={this.handleChange}
+              name="password"
+            />
           </label>
           <buttom type="submit" className="submitButton">
             Submit

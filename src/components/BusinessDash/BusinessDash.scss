@@ -13,6 +13,8 @@
     border-radius: 15px;
     padding: 10px;
     margin-bottom: 30px;
+    color: $secondaryColor;
+    background-color: $accentColor;
   }
 
   .adHeader {
@@ -33,4 +35,42 @@
       font-size: 35px;
     }
   }
+}
+
+@media (max-width: 800px) {
+  .BusinessDashPage {
+    @include pageCenter(100%);
+
+    h1 {
+      font-size: 30px;
+    }
+
+    .businessProfile {
+      width: 90%;
+      border: 2px solid $secondaryColor;
+      border-radius: 15px;
+      padding: 10px;
+      margin-bottom: 30px;
+    }
+
+    .adHeader {
+      display: flex;
+      width: 90%;
+      justify-content: flex-start;
+
+      a {
+        color: $secondaryColor;
+      }
+
+      h2 {
+        font-size: 20px
+      }
+
+      i {
+        margin-right: 30px;
+        font-size: 25px;
+      }
+    }
+  }
+
 }
