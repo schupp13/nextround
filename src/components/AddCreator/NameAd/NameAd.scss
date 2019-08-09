@@ -1,0 +1,35 @@
+@import '../../../App.scss';
+
+.NameAdDiv {
+  @include pageCenter(100%);
+
+  h1 {
+    @include pageHeader();
+  }
+
+  .stepNav {
+    @include stepNav();
+  }
+
+  .card {
+    display: flex;
+    width: 30%;
+    border: 2px solid $accentColor;
+    border-radius: 15px;
+    background-color: $secondaryColor;
+    height: 100px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+
+
+    input {
+      border-radius: 15px;
+      width: 90%;
+      border: solid 2px $accentColor;
+      height: 50px;
+      padding: 10px;
+      font-size: 20px;
+    }
+  }
+}

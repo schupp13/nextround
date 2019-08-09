@@ -1,34 +1,25 @@
 import React, { Component } from "react";
 import axios from "axios";
-import "./Dashboard.scss";
+import { connect } from "react-redux";
+import {
+  getDrinks,
+  getMix,
+  updateDrinks
+} from "../../../redux/reducers/drinkReducer";
+import "./PickDrinks.scss";
 import { Link } from "react-router-dom";
 
-class Dashboard extends Component {
+class PickDrinks extends Component {
   constructor() {
     super();
     this.state = {
       topics: ["Beer", "Bourbon", "Gin", "Rum", "Tequila", "Vodka"],
-      drinks: [],
-      filterDrinks: [],
       bottles: "",
       hideForm: false
     };
   }
 
-  getDrinks = () => {
-    axios
-      .get(
-        "https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Ordinary_Drink"
-      )
-      .then(res => {
-        console.log(res.data.drinks);
-        this.setState({
-          drinks: res.data.drinks,
-          filterDrinks: res.data.drinks
-        });
-      });
-  };
-
+  //keep here
   buildBottles = () => {
     let bottles = this.state.topics.map(res => {
       return (
@@ -43,55 +34,34 @@ class Dashboard extends Component {
         </div>
       );
     });
+
     this.setState({
       bottles: bottles
     });
   };
 
   componentDidMount() {
-    this.getDrinks();
+    this.props.getMix();
     this.buildBottles();
   }
 
   handleClick = e => {
-    let cool = e.target.name;
-    console.log(cool);
-    axios
-      .get(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${cool}`)
-      .then(res => {
-        console.log(res.data.drinks);
-        this.setState({
-          drinks: res.data.drinks,
-          filterDrinks: res.data.drinks
-        });
-      });
+    let alcohol = e.target.name;
+    this.props.getDrinks(alcohol);
   };
 
   handleChange = e => {
-    let filterList = this.state.drinks.filter(res => {
-      console.log(e.target.value);
+    let filterList = this.props.drinks.filter(res => {
       return res.strDrink.toLowerCase().search(e.target.value) !== -1;
     });
-    console.log(filterList);
-    this.setState({
-      filterDrinks: filterList
-    });
-  };
-
-  customForm = id => {
-    axios
-      .get(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
-      .then(res => {
-        console.log(res.data.drinks);
-        this.setState({
-          hideForm: !this.state.hideForm
-        });
-        console.log(this.state.hideForm);
-      });
+    this.props.updateDrinks(filterList);
   };
 
   render() {
-    const filteredDrinks = this.state.filterDrinks.map(res => {
+    console.log(this.props);
+    let { drinks, filterDrinks, loading } = this.props;
+
+    const filteredDrinks = filterDrinks.map(res => {
       return (
         <Link to={`/drink/${res.idDrink}`} style={{ textDecoration: "none" }}>
           <div>
@@ -108,10 +78,15 @@ class Dashboard extends Component {
     });
 
     return (
-      <div className={"DashboardPage"}>
-        <h1 className={"pageHeader"}>Dashboard</h1>
+      <div className={"PickDrinksPage"}>
+        <h1 className={"pageHeader"}>Drink Picker</h1>
+        <div className="stepNav">
+          <i class="fas fa-chevron-left" />
+          <p>Step 2 of 3</p>
+          <i class="fas fa-chevron-right" />
+        </div>
         <div className={"filterDiv"}>
-          <i class="fas fa-random bottles" onClick={this.getDrinks} />
+          <i class="fas fa-random bottles" onClick={this.props.getMix} />
           {this.state.bottles}
         </div>
         <input placeholder="search" onChange={this.handleChange} />
@@ -121,4 +96,15 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+const mapStateToProps = reduxState => {
+  return {
+    drinks: reduxState.drinkReducer.drinks,
+    filterDrinks: reduxState.drinkReducer.filterDrinks,
+    loading: reduxState.drinkReducer.loading
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { getDrinks, getMix, updateDrinks }
+)(PickDrinks);

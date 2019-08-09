@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./BusinessReg.scss";
+import Axios from "axios";
 
 class BusinessReg extends Component {
   constructor() {
@@ -23,7 +24,13 @@ class BusinessReg extends Component {
 
   register = e => {
     e.preventDefault();
-
+    Axios.post("/api/register", { ...this.state })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
     console.log(this.state);
   };
 

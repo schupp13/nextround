@@ -46,7 +46,7 @@ class Nav extends Component {
           <i class="material-icons">menu</i>
         </div>
         <div className={"menuDiv"}>
-          <Link to={"/dashboard"}>
+          <Link to={"/businessDash"}>
             <button>Dashboard</button>
           </Link>
           <button onClick={this.changeLogin}>Login</button>

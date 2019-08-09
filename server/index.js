@@ -24,7 +24,9 @@ app.use(
   })
 );
 
-//Register
+//Register / Checkout
 app.post("/api/register", AC.register);
+app.get("/auth/checkout", AC.checkout);
+// app.post("api/login");
 
 app.listen(SERVER_PORT, () => console.log(`Listening on port ${SERVER_PORT}`));

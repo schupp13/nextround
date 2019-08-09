@@ -1,7 +1,7 @@
-@import '../../App.scss';
+@import '../../../App.scss';
 
 
-.DashboardPage {
+.PickDrinksPage {
   @include pageCenter(100%);
   min-height: 100vh;
 
@@ -9,13 +9,17 @@
     @include pageHeader();
   }
 
+  .stepNav {
+    @include stepNav();
+  }
+
   .filterDiv {
     margin: 10px;
-width: 70%;
-display: flex;
-flex-direction: row;
-justify-content: space-evenly;
-flex-wrap: wrap;
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
 
     i {
       font-size: 50px;

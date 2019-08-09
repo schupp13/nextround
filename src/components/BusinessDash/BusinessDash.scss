@@ -1,0 +1,36 @@
+@import '../../App.scss';
+
+.BusinessDashPage {
+  @include pageCenter(100%);
+
+  h1 {
+    @include pageHeader();
+  }
+
+  .businessProfile {
+    width: 30%;
+    border: 2px solid $secondaryColor;
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 30px;
+  }
+
+  .adHeader {
+    display: flex;
+    width: 70%;
+    justify-content: flex-start;
+
+    a {
+      color: $secondaryColor;
+    }
+
+    h2 {
+      font-size: 30px
+    }
+
+    i {
+      margin-right: 30px;
+      font-size: 35px;
+    }
+  }
+}
