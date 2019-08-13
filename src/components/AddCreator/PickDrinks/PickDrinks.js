@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { connect } from "react-redux";
 import {
   getDrinks,
@@ -7,7 +6,7 @@ import {
   updateDrinks
 } from "../../../redux/reducers/drinkReducer";
 import "./PickDrinks.scss";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import Gif from "../../vid/loading.gif";
 
 class PickDrinks extends Component {
@@ -80,7 +79,8 @@ class PickDrinks extends Component {
 
     return (
       <div className={"PickDrinksPage"}>
-        {}
+        {this.props.session.business_name === "" && <Redirect to="/userDash" />}
+        {this.props.session.first_name === "" && <Redirect to="/" />}
         <h1 className={"pageHeader"}>Drink Picker</h1>
         <div className="stepNav">
           <Link to="/create-ad/name">

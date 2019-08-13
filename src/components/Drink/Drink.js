@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./Drink.scss";
 import Ingredients from "../Ingredients/Ingredients";
+import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 
 class Drink extends Component {
   constructor() {
@@ -115,6 +117,8 @@ class Drink extends Component {
     });
     return (
       <div className="drinkPageDiv">
+        {this.props.session.business_name === "" && <Redirect to="/userDash" />}
+        {this.props.session.first_name === "" && <Redirect to="/" />}
         <h1 className="drinkName">
           {this.state.drinkName}-{"$" + this.state.drinkPrice}
         </h1>
@@ -162,4 +166,10 @@ class Drink extends Component {
   }
 }
 
-export default Drink;
+const mapStateToProps = reduxState => {
+  return {
+    session: reduxState.authReducer
+  };
+};
+
+export default connect(mapStateToProps)(Drink);

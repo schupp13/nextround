@@ -1,11 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
 import "./ConfirmAd.scss";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
-export default function ConfirmAdd() {
+function ConfirmAdd(props) {
   return (
     <div className="ConfirmAdDiv">
+      {props.session.business_name === "" && <Redirect to="/userDash" />}
+      {props.session.first_name === "" && <Redirect to="/" />}
       <h1>ConfirmAd</h1>
       <div className="stepNav">
         <Link to="/create-ad/drinkPicker">
@@ -17,3 +19,10 @@ export default function ConfirmAdd() {
     </div>
   );
 }
+const mapStateToProps = reduxState => {
+  return {
+    session: reduxState.authReducer
+  };
+};
+
+export default connect(mapStateToProps)(ConfirmAdd);
