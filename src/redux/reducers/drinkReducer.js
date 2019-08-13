@@ -48,7 +48,6 @@ export function updateDrinks(drinks) {
 //Reducer Function
 export function drinkReducer(state = initialState, action) {
   const { type, payload } = action;
-  console.log(action);
   switch (type) {
     case `${FETCH_MIX}_PENDING`:
       return { ...state, loading: true };

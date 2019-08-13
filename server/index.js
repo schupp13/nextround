@@ -26,7 +26,8 @@ app.use(
 
 //Register / Checkout
 app.post("/auth/register", AC.register);
-app.get("/auth/checkout", AC.checkout);
+app.get("/auth/logout", AC.logout);
 app.post("/auth/login", AC.login);
+app.get("/auth/getsession", AC.getSession);
 
 app.listen(SERVER_PORT, () => console.log(`Listening on port ${SERVER_PORT}`));

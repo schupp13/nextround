@@ -9,7 +9,7 @@ module.exports = {
       phone,
       email,
       password,
-      desciption,
+      description,
       address,
       suite,
       city,
@@ -39,7 +39,7 @@ module.exports = {
           phone,
           email,
           hash,
-          desciption,
+          description,
           address,
           suite,
           city,
@@ -84,11 +84,10 @@ module.exports = {
     }
   },
   getSession: (req, res) => {
-    req.session.user.firstName
-      ? res.json(req.session.user)
-      : res.sendStatus(403);
+    req.session.user ? res.json(req.session.user) : res.sendStatus(403);
   },
-  checkout: (req, res) => {
+  logout: (req, res) => {
+    console.log(req.session);
     req.session.destroy();
     res.sendStatus(200);
   }

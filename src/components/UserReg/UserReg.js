@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import "./UserReg.scss";
 import axios from "axios";
+import { connect } from "react-redux";
+import { updateUser } from "../../redux/reducers/authReducer";
 
-class BusinessReg extends Component {
+import { Redirect } from "react-router-dom";
+
+class UserReg extends Component {
   constructor() {
     super();
     this.state = {
@@ -15,14 +19,23 @@ class BusinessReg extends Component {
 
   register = e => {
     e.preventDefault();
+    console.log("hitting");
     axios
       .post("/auth/register", { ...this.state })
       .then(res => {
-        console.log(res);
+        console.log(res.data);
+        this.props.updateUser(res.data);
       })
       .catch(err => {
         console.log(err);
       });
+    console.log(this.state);
+    this.setState({
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: ""
+    });
   };
 
   handleChange = e => {
@@ -33,20 +46,36 @@ class BusinessReg extends Component {
   render() {
     return (
       <div className={"UserReg"}>
-        <form onClick={this.register}>
+        {this.props.session.business_name ? (
+          <Redirect to={"/businessDash"} />
+        ) : (
+          this.props.session.first_name && <Redirect to={"/userDash"} />
+        )}
+        <form onSubmit={this.register}>
           <h1 className={"pageHeader"}>Registration</h1>
           <h2>Contact Information</h2>
           <label>
             First Name
-            <input required onChange={this.handleChange} name="firstName" />
+            <input
+              value={this.state.firstName}
+              required
+              onChange={this.handleChange}
+              name="firstName"
+            />
           </label>
           <label>
             Last Name
-            <input required onChange={this.handleChange} name="lastName" />
+            <input
+              value={this.state.lastName}
+              required
+              onChange={this.handleChange}
+              name="lastName"
+            />
           </label>
           <label>
             Email
             <input
+              value={this.state.email}
               required
               type="email"
               onChange={this.handleChange}
@@ -56,19 +85,29 @@ class BusinessReg extends Component {
           <label>
             Password
             <input
+              value={this.state.password}
               required
               type="password"
               onChange={this.handleChange}
               name="password"
             />
           </label>
-          <buttom type="submit" className="submitButton">
-            Submit
-          </buttom>
+          <button className="submitButton" type="submit">
+            Register
+          </button>
         </form>
       </div>
     );
   }
 }
 
-export default BusinessReg;
+const mapStateToProps = reduxState => {
+  return {
+    session: reduxState.authReducer
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { updateUser }
+)(UserReg);

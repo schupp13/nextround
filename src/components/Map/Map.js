@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Map, GoogleApiWrapper } from "google-maps-react";
 import "./Map.scss";
 import { isAbsolute, relative } from "path";
+const { REACT_APP_MAP: MAP } = process.env;
 
 const mapStyles = {
   position: relative,

@@ -41,6 +41,8 @@
       font-size: 20px;
     }
 
+
+
     .submitButton:hover {
       cursor: pointer;
     }
@@ -69,6 +71,13 @@
         padding: 15px;
 
       }
+
+      select {
+        border-radius: 15px;
+        width: 50%;
+        font-size: px;
+        padding: 15px;
+      }
     }
   }
 }
@@ -88,6 +97,10 @@
         }
 
         textarea {
+          width: 100%;
+        }
+
+        select {
           width: 100%;
         }
       }

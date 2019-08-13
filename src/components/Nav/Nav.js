@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import "./Nav.scss";
 import { Link } from "react-router-dom";
 import Login from "../Login/Login";
+import { connect } from "react-redux";
+import { logout, checkForLogin } from "../../redux/reducers/authReducer";
+import Axios from "axios";
+import Map from "../Map/Map";
 
 class Nav extends Component {
   constructor() {
@@ -34,8 +38,27 @@ class Nav extends Component {
     }
   };
 
+  componentDidMount() {
+    Axios.get("/auth/getsession").then(res => {
+      console.log(res.data.first_name);
+      if (res.data.first_name) {
+        this.props.checkForLogin(res.data);
+      }
+    });
+  }
+
+  logout = () => {
+    Axios.get("/auth/logout")
+      .then(res => {
+        this.props.logout();
+      })
+      .catch(err => {
+        alert(err);
+      });
+  };
+
   render() {
-    console.log(this.state.className);
+    console.log(this.props);
     return (
       <nav className={"navbar"}>
         <div>
@@ -47,15 +70,31 @@ class Nav extends Component {
           <i class="material-icons">menu</i>
         </div>
         <div className={"menuDiv"}>
-          <Link to={"/businessDash"}>
-            <button>Dashboard</button>
-          </Link>
-          <button onClick={this.changeLogin}>Login</button>
+          {/* this will display the business dash if business name exist */}
+          {this.props.session.business_name && (
+            <Link to={"/businessDash"}>
+              <button>Dashboard</button>
+            </Link>
+          )}
+          {/* this will display the map to both the public and the business dash */}
 
+          {this.props.session.first_name && !this.props.session.business_name && (
+            <Link to={"/userDash"}>
+              <button>User Dash</button>
+            </Link>
+          )}
+
+          {/* this will display the anyone that is logged in  */}
+          {this.props.session.first_name ? (
+            <button onClick={this.logout}>Logout</button>
+          ) : (
+            <button onClick={this.changeLogin}>Login</button>
+          )}
+          {/* this is a toggle to drop down the login screen*/}
           {this.state.hideLogin === false ? null : (
             <div className={"login"}>
               {" "}
-              <Login />
+              <Login changeLogin={this.changeLogin} />
             </div>
           )}
         </div>
@@ -80,4 +119,13 @@ class Nav extends Component {
   }
 }
 
-export default Nav;
+const mapStateToProps = reduxState => {
+  return {
+    session: reduxState.authReducer
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { logout, checkForLogin }
+)(Nav);

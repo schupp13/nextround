@@ -8,12 +8,13 @@ import {
 } from "../../../redux/reducers/drinkReducer";
 import "./PickDrinks.scss";
 import { Link } from "react-router-dom";
+import Gif from "../../vid/loading.gif";
 
 class PickDrinks extends Component {
   constructor() {
     super();
     this.state = {
-      topics: ["Beer", "Bourbon", "Gin", "Rum", "Tequila", "Vodka"],
+      topics: ["Beer", "Bourbon", "Gin", "Rum", "Tequila", "Vodka", "Whisky"],
       bottles: "",
       hideForm: false
     };
@@ -79,6 +80,7 @@ class PickDrinks extends Component {
 
     return (
       <div className={"PickDrinksPage"}>
+        {}
         <h1 className={"pageHeader"}>Drink Picker</h1>
         <div className="stepNav">
           <Link to="/create-ad/name">
@@ -94,7 +96,11 @@ class PickDrinks extends Component {
           {this.state.bottles}
         </div>
         <input placeholder="search" onChange={this.handleChange} />
-        <div className="drinkContainer">{filteredDrinks}</div>
+        {this.props.loading ? (
+          <img src={Gif} />
+        ) : (
+          <div className="drinkContainer">{filteredDrinks}</div>
+        )}
       </div>
     );
   }
@@ -102,6 +108,7 @@ class PickDrinks extends Component {
 
 const mapStateToProps = reduxState => {
   return {
+    session: reduxState.authReducer,
     drinks: reduxState.drinkReducer.drinks,
     filterDrinks: reduxState.drinkReducer.filterDrinks,
     loading: reduxState.drinkReducer.loading

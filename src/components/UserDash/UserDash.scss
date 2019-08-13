@@ -1,0 +1,11 @@
+@import '../../App.scss';
+
+.UserDashPage {
+  @include pageCenter(100%);
+
+  h1 {
+    @include pageHeader();
+
+  }
+
+}
