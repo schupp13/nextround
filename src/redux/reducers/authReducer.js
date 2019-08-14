@@ -40,7 +40,7 @@ export function updateUser(value) {
   };
 }
 
-export function logout() {
+export function clearAuthReducer() {
   return {
     type: DESTROY_USER,
     payload: initialState

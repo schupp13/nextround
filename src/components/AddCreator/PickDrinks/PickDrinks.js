@@ -87,9 +87,11 @@ class PickDrinks extends Component {
             <i class="fas fa-chevron-left" />
           </Link>
           <p>Step 2 of 3</p>
-          <Link to="/create-ad/confirm">
-            <i class="fas fa-chevron-right" />
-          </Link>
+          {this.props.adDrinks.length > 0 && (
+            <Link to="/create-ad/confirm">
+              <i class="fas fa-chevron-right" />
+            </Link>
+          )}
         </div>
         <div className={"filterDiv"}>
           <i class="fas fa-random bottles" onClick={this.props.getMix} />
@@ -108,6 +110,7 @@ class PickDrinks extends Component {
 
 const mapStateToProps = reduxState => {
   return {
+    adDrinks: reduxState.adReducer.drinks,
     session: reduxState.authReducer,
     drinks: reduxState.drinkReducer.drinks,
     filterDrinks: reduxState.drinkReducer.filterDrinks,

@@ -2,14 +2,22 @@
 
 .ConfirmAdDiv {
   @include pageCenter(100%);
+  color: $secondaryColor;
 
   h1 {
     @include pageHeader();
+    color: $secondaryColor;
   }
 
   .stepNav {
     @include stepNav();
   }
+
+  .cardAd {
+    width: 70%;
+  }
+
+
 }
 
 @media (max-width: 800px) {
@@ -21,6 +29,10 @@
     }
 
     .stepNav {
+      width: 100%;
+    }
+
+    .cardAd {
       width: 100%;
     }
   }

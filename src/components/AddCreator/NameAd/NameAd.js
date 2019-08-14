@@ -15,11 +15,12 @@ function NameAd(props) {
       <div className="stepNav">
         <p>Step 1 of 3</p>
         <Link to="/create-ad/drinkPicker">
-          <i class="fas fa-chevron-right" />
+          {props.ad_name != "" && <i class="fas fa-chevron-right" />}
         </Link>
       </div>
       <div className="card">
         <input
+          value={props.ad_name}
           onChange={e => props.updateAdName(e.target.value)}
           placeholder="e.g. BOGO Margaritas "
         />

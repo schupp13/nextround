@@ -1,25 +1,31 @@
 const initialState = {
   ad_name: "",
-  dirnk_name: "",
-  drink_price: "",
-  drink_ingredients: [],
   drinks: []
 };
 
 const UPDATE_AD_NAME = "UPDATE_AD_NAME";
-const UPDATE_DRINK_PRICE = "UPDATE_DRINK_PRICE";
+const DESTROY_AD = "DESTROP_AD";
 const ADD_DRINK = "ADD_DRINK";
 
-export function updateAdName(name) {
+export function addDrink(drinkName, drinkPrice, ingredients, image) {
   return {
-    type: `${UPDATE_AD_NAME}`,
-    payload: name
+    type: ADD_DRINK,
+    payload: { drinkName, drinkPrice, ingredients, image }
   };
 }
 
-export function updateDrinkPrice() {}
-
-export function addDrink() {}
+export function updateAdName(name) {
+  return {
+    type: UPDATE_AD_NAME,
+    payload: name
+  };
+}
+export function clearAdReducer() {
+  return {
+    type: DESTROY_AD,
+    payload: initialState
+  };
+}
 
 export function adReducer(state = initialState, action) {
   switch (action.type) {
@@ -28,6 +34,17 @@ export function adReducer(state = initialState, action) {
         ...state,
         ad_name: action.payload
       };
+
+    case ADD_DRINK:
+      return {
+        ...state,
+        drinks: [...state.drinks, action.payload]
+      };
+    case `${DESTROY_AD}`:
+      return {
+        ...action.payload
+      };
+
     default:
       return state;
   }

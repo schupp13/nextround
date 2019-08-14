@@ -3,7 +3,11 @@ import "./Nav.scss";
 import { Link } from "react-router-dom";
 import Login from "../Login/Login";
 import { connect } from "react-redux";
-import { logout, checkForLogin } from "../../redux/reducers/authReducer";
+import {
+  clearAuthReducer,
+  checkForLogin
+} from "../../redux/reducers/authReducer";
+import { clearAdReducer } from "../../redux/reducers/adReducer";
 import Axios from "axios";
 import Map from "../Map/Map";
 
@@ -50,7 +54,8 @@ class Nav extends Component {
   logout = () => {
     Axios.get("/auth/logout")
       .then(res => {
-        this.props.logout();
+        this.props.clearAuthReducer();
+        this.props.clearAdReducer();
       })
       .catch(err => {
         alert(err);
@@ -127,5 +132,5 @@ const mapStateToProps = reduxState => {
 
 export default connect(
   mapStateToProps,
-  { logout, checkForLogin }
+  { clearAdReducer, clearAuthReducer, checkForLogin }
 )(Nav);

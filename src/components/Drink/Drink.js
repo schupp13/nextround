@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./Drink.scss";
 import Ingredients from "../Ingredients/Ingredients";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import { addDrink } from "../../redux/reducers/adReducer";
 
 class Drink extends Component {
   constructor() {
@@ -104,6 +105,24 @@ class Drink extends Component {
     });
   };
 
+  addDrink = () => {
+    let {
+      drinkName,
+      drinkPrice,
+      measurements,
+      ingredients,
+      image
+    } = this.state;
+    let ingredientsList = ingredients.map((ingredient, index) => {
+      return measurements[index]
+        ? measurements[index] + " " + ingredient + ","
+        : ingredient + ",";
+    });
+
+    console.log(drinkName + drinkPrice + ingredientsList);
+    this.props.addDrink(drinkName, drinkPrice, [ingredientsList], image);
+  };
+
   render() {
     let ingredientsList = this.state.ingredients.map((ingredient, index) => {
       return (
@@ -144,7 +163,7 @@ class Drink extends Component {
                 name="drinkPrice"
                 onChange={this.handleNameChange}
                 name="drinkPrice"
-                placeholder={"$5.00"}
+                placeholder={"5.00"}
               />
             </div>
             <div className="addIngredient">
@@ -158,6 +177,13 @@ class Drink extends Component {
               <button onClick={this.handleIngredientClick} name="customName">
                 Add Ingredient
               </button>
+              {this.state.drinkPrice && (
+                <Link to={"/create-ad/drinkPicker"}>
+                  <button name="customName" onClick={this.addDrink}>
+                    Add Drink to Ad: {this.props.ad_name}
+                  </button>
+                </Link>
+              )}
             </div>
           </div>
         </div>
@@ -168,8 +194,12 @@ class Drink extends Component {
 
 const mapStateToProps = reduxState => {
   return {
-    session: reduxState.authReducer
+    session: reduxState.authReducer,
+    ad_name: reduxState.adReducer.ad_name
   };
 };
 
-export default connect(mapStateToProps)(Drink);
+export default connect(
+  mapStateToProps,
+  { addDrink }
+)(Drink);
