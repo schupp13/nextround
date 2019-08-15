@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import "./ConfirmAd.scss";
 import { Link, Redirect } from "react-router-dom";
 import DisplayAd from "../../DisplayAd/DisplayAd";
+import { clearAdReducer } from "../../../redux/reducers/adReducer";
+import Axios from "axios";
 
 function ConfirmAd(props) {
   let drinkPrint = props.ad.drinks.map(drink => {
@@ -17,11 +19,27 @@ function ConfirmAd(props) {
       </div>
     );
   });
+
+  const submitAd = a => {
+    let { id } = props.session;
+    let { ad_name, drinks } = props.ad;
+    console.log("hit");
+    Axios.post("/api/ads", { id, ad_name, drinks })
+      .then(res => {
+        console.log(res);
+        props.clearAdReducer();
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   console.log(props);
   return (
     <div className="ConfirmAdDiv">
       {props.session.business_name === "" && <Redirect to="/userDash" />}
       {props.session.first_name === "" && <Redirect to="/" />}
+      {props.ad.drinks.length === 0 && <Redirect to="/businessDash" />}
       <h1>ConfirmAd</h1>
       <div className="stepNav">
         <Link to="/create-ad/drinkPicker">
@@ -36,6 +54,10 @@ function ConfirmAd(props) {
           businessId={props.session.id}
         />
       </div>
+      <div className="actionButtons">
+        <button onClick={props.clearAdReducer}>Cancel Ad</button>
+        <button onClick={submitAd}>Submit Ad</button>
+      </div>
     </div>
   );
 }
@@ -46,4 +68,7 @@ const mapStateToProps = reduxState => {
   };
 };
 
-export default connect(mapStateToProps)(ConfirmAd);
+export default connect(
+  mapStateToProps,
+  { clearAdReducer }
+)(ConfirmAd);

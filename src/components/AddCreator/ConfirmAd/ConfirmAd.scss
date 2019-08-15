@@ -17,6 +17,22 @@
     width: 70%;
   }
 
+  .actionButtons {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 100px;
+    width: 100%;
+
+    button {
+      height: 60px;
+      border: 2px solid $secondaryColor;
+      border-radius: 15px;
+      width: 120px;
+      background-color: $accentColor;
+      color: $secondaryColor;
+    }
+  }
+
 
 }
 
@@ -33,7 +49,7 @@
     }
 
     .cardAd {
-      width: 100%;
+      width: 90%;
     }
   }
 }

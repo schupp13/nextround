@@ -3,14 +3,26 @@ import "./BusinessDash.scss";
 import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import Axios from "axios";
+import AdBuilder from "../AdBuilder/AdBuilder";
 
 class BusinessDash extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      ads: []
+    };
+  }
+
+  componentDidMount() {
+    //This component gets the ads
+    Axios.get(`/api/company/ads/${this.props.session.id}`).then(response => {
+      this.setState({ ads: response.data });
+    });
   }
   render() {
     let {
+      id,
       business_name,
       address,
       suite,
@@ -23,7 +35,7 @@ class BusinessDash extends Component {
       <div className="BusinessDashPage">
         {business_name === "" && <Redirect to="/userDash" />}
         {first_name === "" && <Redirect to="/" />}
-        <h1 className="pageHeader">Business Dash</h1>
+        <h1 className="pageHeader">Dashboard</h1>
         <div className="businessProfile">
           <h2>{business_name}</h2>
           <p>{address}</p>
@@ -41,6 +53,7 @@ class BusinessDash extends Component {
             <i className="far fa-plus-square" />
           </Link>
           <h2>Your Ads</h2>
+          <AdBuilder business_id={id} />
         </div>
         <div className="adContainer" />
       </div>
