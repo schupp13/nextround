@@ -1,52 +1,44 @@
 @import '../../App.scss';
 
-.busDiv {
-  .AdBuilderDiv {
+
+.AdBuilderArticle {
+  background-color: $accentColor;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  color: $secondaryColor;
+  border-radius: 15px;
+  height: 100%;
+  flex-wrap: wrap;
+
+
+  .adTitle {}
+
+  button {
+    color: $secondaryColor;
+    background-color: $accentColor;
+    border: 1px $secondaryColor solid;
+
     width: 100%;
-    color: white;
-
-
-    button {
-      background-color: transparent;
-      border: none;
-      width: 100%;
-      border: 1px solid $secondaryColor;
-      animation-name: drinksToggle;
-      border-radius: 0 0 15px 15px;
-
-      i {
-        padding: 10px;
-        font-size: 40px;
-        color: $secondaryColor;
-      }
-    }
-
-    .busDiv2 {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      width: 100%;
-
-      .busaddressDiv,
-      .busDescriptionDiv {
-        margin: 30px;
-      }
-
-      .busaddressDiv {
-        width: 40%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
-
-      .busDescriptionDiv {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
-    }
+    padding: 1%;
   }
+
+  .bizToggle {
+    border-radius: 0 0 15px 15px;
+  }
+
+  .AdBuilderDrinkDiv {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+  }
+
+
 }
+
+@media (max-width: 800px) {}

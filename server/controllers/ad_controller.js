@@ -20,16 +20,37 @@ module.exports = {
     });
 
     res.sendStatus(200);
-  }
+  },
 
-  // getAdsForCompany: async (req, res) => {
-  //   console.log("hit");
-  //   // this function gets all of the ads associated with a business
-  //   let { id } = req.params;
-  //   const db = req.app.get("db");
-  //   let allAds = await db.get_ads_for_company([id]).catch(err => {
-  //     console.log(err);
-  //   });
-  //   res.status(200).json(allAds);
-  // }
+  getAdsForCompany: async (req, res) => {
+    console.log("hit");
+    // this function gets all of the ads associated with a business
+    let { id } = req.params;
+    const db = req.app.get("db");
+    let allAds = await db.get_ads_for_company([id]).catch(err => {
+      console.log(err);
+    });
+    res.status(200).json(allAds);
+  },
+
+  deleteAd: async (req, res) => {
+    let { id } = req.params;
+    console.log("hitting");
+    console.log(id);
+    const db = req.app.get("db");
+    await db.delete_drinks_of_ad([id]).catch(err => {
+      console.log(err);
+    });
+    await db.delete_ad([id]).catch(err => {
+      console.log(err);
+    });
+
+    let ads = await db
+      .get_ads_for_company([req.session.user.id])
+      .catch(response => {
+        console.log(response);
+      });
+
+    res.status(200).json(ads);
+  }
 };

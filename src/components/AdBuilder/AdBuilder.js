@@ -1,64 +1,74 @@
-// READ ME: THE POINT OF AD BUILDER IS TO GENERATE ALL ADS GIVEN ONE PIECE OF DATA- THE USER ID FROM THERE I WILL MAKE A COMPONENT;
+// READ ME: THIS COMPONENT SHOULD RECEIVE ONE AD
 //THIS COMPONENT WILL TAKE CARE OF THE BUSINESS SLIDE ALSO -
 import React, { Component } from "react";
 import Axios from "axios";
 import "./AdBuilder.scss";
+import Drinks from "./Drinks/Drinks";
+import BusinessDiv from "./BusinessDiv/BusinessDiv";
 
 export default class AdBuilder extends Component {
   constructor() {
     super();
     this.state = {
-      business: []
+      toggleBiz: false,
+      toggleDrink: false,
+      business: {},
+      drinks: []
     };
   }
 
   componentDidMount() {
-    Axios.get(`/api/company/${this.props.business_id}`).then(response => {
-      this.setState({ business: response.data });
-    });
+    Axios.get(`/api/company/${this.props.ad.business_id}`).then(
+      businessResponse => {
+        Axios.get(`/api/ad/drinks/${this.props.ad.id}`).then(drinksResponse => {
+          this.setState({
+            business: businessResponse.data[0],
+            drinks: drinksResponse.data
+          });
+        });
+      }
+    );
   }
-  render() {
-    let ad = this.state.business.map(business => {
-      let {
-        business_name,
-        city,
-        address,
-        state,
-        zip,
-        suite,
-        first_name,
-        last_name,
-        description,
-        phone
-      } = business;
-      return (
-        <div className={"AdBuilderDiv"}>
-          //below needs to toggle
-          <button>
-            <i class="fas fa-store" />
-          </button>
-          <div>
-            <h1>{business_name}</h1>
-            <div className={"busaddressDiv"}>
-              <p>
-                {address}, {suite && suite}
-              </p>
-              <p>
-                {city}, {state} {zip}
-              </p>
-              <h5>Contact</h5>
-              <p>{phone}</p>
-              <p>
-                Manager: {first_name} {last_name}
-              </p>
-            </div>
-            <div className={"busDescriptionDiv"}>
-              <p>{description}</p>
-            </div>
-          </div>
-        </div>
-      );
+
+  toggleDrink = () => {
+    this.setState({
+      toggleDrink: !this.state.toggleDrink
     });
-    return <div className={"busDiv"}>{ad}</div>;
+  };
+
+  toggleBiz = () => {
+    this.setState({
+      toggleBiz: !this.state.toggleBiz
+    });
+  };
+
+  render() {
+    console.log(this.state);
+    let drinksList = this.state.drinks.map(drink => {
+      return <Drinks drink={drink} />;
+    });
+
+    return (
+      <article className={"AdBuilderArticle"}>
+        <h1 className={"adTitle"}>
+          {this.props.ad.ad_title} @{this.state.business.business_name}
+        </h1>
+        <button name={"drinkToggle"} onClick={this.toggleDrink}>
+          <i class="fas fa-cocktail" />
+        </button>
+        {this.state.toggleDrink && (
+          <div className={"AdBuilderDrinkDiv"}>{drinksList}</div>
+        )}
+
+        <button
+          name={"bizToggle"}
+          className={"bizToggle"}
+          onClick={this.toggleBiz}
+        >
+          <i class="fas fa-store" />
+        </button>
+        {this.state.toggleBiz && <BusinessDiv business={this.state.business} />}
+      </article>
+    );
   }
 }

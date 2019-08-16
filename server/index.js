@@ -41,8 +41,9 @@ app.get("/api/company/:id", BC.getCompanyForAdBuilder);
 
 // ADS TABLE
 app.post("/api/ads", ADC.createAd);
-// app.get("/api/company/ads/:id", ADC.getAdsForCompany);
+app.delete("/api/ads/:id", ADC.deleteAd);
+app.get("/api/company/ads/:id", ADC.getAdsForCompany);
 
 //DRINK TABLE
-
+app.get("/api/ad/drinks/:id", DC.getDrinksForAds);
 app.listen(SERVER_PORT, () => console.log(`Listening on port ${SERVER_PORT}`));

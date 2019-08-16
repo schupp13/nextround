@@ -12,6 +12,7 @@ module.exports = {
   },
 
   getCompanyForAdBuilder: (req, res) => {
+    console.log(`getCompanyForAdBuilder is hitting`);
     let { id } = req.params;
     console.log(req.params);
     const db = req.app.get("db");

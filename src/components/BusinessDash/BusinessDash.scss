@@ -20,20 +20,40 @@
   .adHeader {
     display: flex;
     width: 70%;
-    justify-content: flex-start;
+    margin: 50px 0px 30px 0px;
     flex-direction: column;
+    justify-content: center;
 
-    a {
-      color: $secondaryColor;
-    }
+    .plusAndHeader {
+      display: flex;
+      margin-bottom: 40px;
 
-    h2 {
-      font-size: 30px
+      a {
+        color: $secondaryColor;
+      }
+
+      h2 {
+        font-size: 30px
+      }
+
     }
 
     i {
       margin-right: 30px;
       font-size: 35px;
+    }
+
+    .AdsHeader {}
+
+    .adContainer {
+      background-color: $accentColor;
+      border-radius: 15px;
+      margin: 50px 0;
+
+      .trash {
+        color: $secondaryColor;
+        margin: 20px;
+      }
     }
   }
 }

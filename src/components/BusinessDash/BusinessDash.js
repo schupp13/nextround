@@ -5,6 +5,7 @@ import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import Axios from "axios";
 import AdBuilder from "../AdBuilder/AdBuilder";
+import BusineesDiv from "../AdBuilder/BusinessDiv/BusinessDiv";
 
 class BusinessDash extends Component {
   constructor() {
@@ -14,13 +15,22 @@ class BusinessDash extends Component {
     };
   }
 
+  deleteAd = id => {
+    console.log(id);
+    Axios.delete(`/api/ads/${id}`).then(res => {
+      this.setState({ ads: res.data });
+    });
+  };
+
   componentDidMount() {
     //This component gets the ads
     Axios.get(`/api/company/ads/${this.props.session.id}`).then(response => {
+      console.log(response.data);
       this.setState({ ads: response.data });
     });
   }
   render() {
+    console.log(this.state.ads);
     let {
       id,
       business_name,
@@ -31,6 +41,18 @@ class BusinessDash extends Component {
       description,
       phone
     } = this.props.session;
+
+    let listOfAds = this.state.ads.map(ad => {
+      return (
+        <div className="adContainer">
+          <i
+            className="fas fa-trash-alt trash"
+            onClick={() => this.deleteAd(ad.id)}
+          />
+          <AdBuilder ad={ad} />
+        </div>
+      );
+    });
     return (
       <div className="BusinessDashPage">
         {business_name === "" && <Redirect to="/userDash" />}
@@ -48,14 +70,17 @@ class BusinessDash extends Component {
 
           <button>Edit Profile</button>
         </div>
+
         <div className="adHeader">
-          <Link to="/create-ad/name">
-            <i className="far fa-plus-square" />
-          </Link>
-          <h2>Your Ads</h2>
-          <AdBuilder business_id={id} />
+          <div className="plusAndHeader">
+            <Link to="/create-ad/name">
+              <i className="far fa-plus-square" />
+            </Link>
+
+            <h2 className={"AdsHeader"}>Your Ads</h2>
+          </div>
+          {listOfAds}
         </div>
-        <div className="adContainer" />
       </div>
     );
   }

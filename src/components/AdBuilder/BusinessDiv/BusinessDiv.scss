@@ -1,0 +1,30 @@
+.bizDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 50px;
+
+  .busDescriptionDiv {
+    color: white;
+    font-size: 25px;
+    width: 50%
+  }
+}
+
+@media (max-width: 800px) {
+  .bizDiv {
+
+
+    .busDescriptionDiv {
+      color: white;
+      font-size: 25px;
+      width: 100%;
+      margin: 0;
+
+      p {
+        width: 100%;
+      }
+    }
+  }
+}
