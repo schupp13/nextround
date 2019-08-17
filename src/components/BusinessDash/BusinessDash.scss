@@ -15,6 +15,54 @@
     margin-bottom: 30px;
     color: $secondaryColor;
     background-color: $accentColor;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+
+    .cardheader {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 40px;
+
+      i {
+        font-size: 50px;
+
+      }
+    }
+
+    button {
+      width: 100px;
+      height: 30px;
+      background-color: $accentColor;
+      border: 2px solid $secondaryColor;
+      color: $secondaryColor;
+      border-radius: 5px;
+
+    }
+
+    .cardbody {
+      display: flex;
+
+
+      .descriptionsDiv,
+      .managerDiv,
+      .addressDiv {
+        width: 100%;
+
+
+      }
+    }
+
+    h2 {
+      font-size: 50px;
+    }
+
+    p {
+      color: white
+    }
   }
 
   .adHeader {
@@ -72,6 +120,38 @@
       border-radius: 15px;
       padding: 10px;
       margin-bottom: 30px;
+
+      .cardheader {
+
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        margin-bottom: 40px;
+        width: 90%;
+      }
+
+      .cardbody {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+
+
+
+
+        .descriptionsDiv,
+        .managerDiv,
+        .addressDiv {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: flex-start;
+          margin-bottom: 30px;
+        }
+      }
+
     }
 
     .adHeader {

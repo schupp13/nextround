@@ -3,6 +3,7 @@ import "./Landing.scss";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
+import Img from "../Img/Img";
 
 function Landing(props) {
   return (

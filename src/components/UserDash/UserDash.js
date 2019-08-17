@@ -17,8 +17,12 @@ function UserDash(props) {
         <p>Change Password</p>
       </div>
       <div className="likes" />
-
-      <Map />
+      <div className={"mapdiv"}>
+        <Map />
+      </div>
+      <div>
+        <h1>THIS IS WHERE THE ADS WILL GO THATE ARE IN THE vicinity </h1>
+      </div>
     </div>
   );
 }

@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import Axios from "axios";
 import AdBuilder from "../AdBuilder/AdBuilder";
 import BusineesDiv from "../AdBuilder/BusinessDiv/BusinessDiv";
+import Img from "../Img/Img";
 
 class BusinessDash extends Component {
   constructor() {
@@ -39,7 +40,10 @@ class BusinessDash extends Component {
       first_name,
       last_name,
       description,
-      phone
+      phone,
+      city,
+      state,
+      zip
     } = this.props.session;
 
     let listOfAds = this.state.ads.map(ad => {
@@ -58,17 +62,39 @@ class BusinessDash extends Component {
         {business_name === "" && <Redirect to="/userDash" />}
         {first_name === "" && <Redirect to="/" />}
         <h1 className="pageHeader">Dashboard</h1>
-        <div className="businessProfile">
-          <h2>{business_name}</h2>
-          <p>{address}</p>
-          <p>{phone}</p>
-          <p>Suite:{suite}</p>
-          <h5>Manager</h5>
-          <p>{first_name}</p>
-          <p>{last_name}</p>
-          <p>{description}</p>
 
-          <button>Edit Profile</button>
+        <div className="businessProfile">
+          <div className="cardheader">
+            <h2>{business_name}</h2>
+
+            <i class="fas fa-user-edit" />
+          </div>
+
+          <div className="cardbody">
+            <div className="addressDiv">
+              <h3>Address:</h3>
+              <p>{address}</p>
+              <p>Suite:{suite}</p>
+              <p>
+                {city}, {state} {zip}
+              </p>
+            </div>
+
+            <div className="managerDiv">
+              <h3>Manager</h3>
+              <p>
+                {first_name} {last_name}
+                <p>{phone}</p>
+              </p>
+            </div>
+            <div className="descriptionDiv">
+              <div className="descriptionDiv">
+                <h3>Company Description</h3>
+                <p>{description}</p>
+              </div>
+            </div>
+          </div>
+          <div className="editProfile" />
         </div>
 
         <div className="adHeader">

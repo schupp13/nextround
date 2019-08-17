@@ -7,18 +7,18 @@ import { clearAdReducer } from "../../../redux/reducers/adReducer";
 import Axios from "axios";
 
 function ConfirmAd(props) {
-  let drinkPrint = props.ad.drinks.map(drink => {
-    console.log(props);
-    return (
-      <div className={"drink"}>
-        <h3>{`$${drink.drinkPrice}- ${drink.drinkName} @ ${
-          props.session.business_name
-        }`}</h3>
-        <img src={drink.image} />
-        <p>{drink.ingredients}</p>
-      </div>
-    );
-  });
+  // let drinkPrint = props.ad.drinks.map(drink => {
+  //   console.log(props);
+  //   return (
+  //     <div className={"drink"}>
+  //       <h3>{`$${drink.drinkPrice}- ${drink.drinkName} @ ${
+  //         props.session.business_name
+  //       }`}</h3>
+  //       <img alt={"drink.name"}src={drink.image} />
+  //       <p>{drink.ingredients}</p>
+  //     </div>
+  //   );
+  // });
 
   const submitAd = a => {
     let { id } = props.session;
