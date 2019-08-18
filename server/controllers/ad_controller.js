@@ -52,5 +52,19 @@ module.exports = {
       });
 
     res.status(200).json(ads);
+  },
+
+  allAds: async (req, res) => {
+    let db = req.app.get("db");
+    let allAds = await db.get_all_ads().catch(err => console.log(err));
+    res.status(200).json(allAds);
+  },
+
+  allAdsAddress: async (req, res) => {
+    let db = req.app.get("db");
+    let allAdAdress = await db.get_all_ad_address().catch(err => {
+      console.log(err);
+    });
+    res.status(200).json(allAdAdress);
   }
 };

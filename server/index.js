@@ -32,6 +32,7 @@ app.post("/auth/register", AC.register);
 app.get("/auth/logout", AC.logout);
 app.post("/auth/login", AC.login);
 app.get("/auth/getsession", AC.getSession);
+app.put("/auth/editProfile", AC.edit);
 
 //should only be used for business users
 app.get("/api/company", BC.getCompany);
@@ -43,6 +44,8 @@ app.get("/api/company/:id", BC.getCompanyForAdBuilder);
 app.post("/api/ads", ADC.createAd);
 app.delete("/api/ads/:id", ADC.deleteAd);
 app.get("/api/company/ads/:id", ADC.getAdsForCompany);
+app.get("/api/getAllAds", ADC.allAds);
+app.get("/api/getAllAdsAddress", ADC.allAdsAddress);
 
 //DRINK TABLE
 app.get("/api/ad/drinks/:id", DC.getDrinksForAds);

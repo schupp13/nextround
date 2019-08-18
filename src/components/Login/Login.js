@@ -33,7 +33,6 @@ class Login extends Component {
     return (
       <div className={"loginDiv"}>
         {this.props.session.business_name && <Redirect to="/businessDash" />}
-
         <video id="background-video" loop autoPlay>
           <source src={Video} type="video/mp4" />
         </video>

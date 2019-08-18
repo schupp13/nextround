@@ -1,0 +1,6 @@
+@import '../BusinessReg/BusinessReg.scss';
+
+
+.editForm {
+  @extend .BusinessReg;
+}

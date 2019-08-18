@@ -80,7 +80,7 @@ export function authReducer(state = initialState, action) {
       };
 
     case `${UPDATE_USER}`:
-      return { ...action.payload };
+      return { ...action.payload, error: "", pending: false };
 
     case `CHECK_FOR_LOGIN`:
       console.log(action.payload);

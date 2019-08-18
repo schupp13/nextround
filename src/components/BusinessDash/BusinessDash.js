@@ -6,13 +6,13 @@ import { connect } from "react-redux";
 import Axios from "axios";
 import AdBuilder from "../AdBuilder/AdBuilder";
 import BusineesDiv from "../AdBuilder/BusinessDiv/BusinessDiv";
-import Img from "../Img/Img";
-
+import EditPrfofile from "../EditProfile/EditProfile";
 class BusinessDash extends Component {
   constructor() {
     super();
     this.state = {
-      ads: []
+      ads: [],
+      toogle: false
     };
   }
 
@@ -30,6 +30,12 @@ class BusinessDash extends Component {
       this.setState({ ads: response.data });
     });
   }
+
+  changeToggle = () => {
+    this.setState({
+      toggle: !this.state.toggle
+    });
+  };
   render() {
     console.log(this.state.ads);
     let {
@@ -53,6 +59,7 @@ class BusinessDash extends Component {
             className="fas fa-trash-alt trash"
             onClick={() => this.deleteAd(ad.id)}
           />
+
           <AdBuilder ad={ad} />
         </div>
       );
@@ -67,7 +74,9 @@ class BusinessDash extends Component {
           <div className="cardheader">
             <h2>{business_name}</h2>
 
-            <i class="fas fa-user-edit" />
+            <Link to="/editProfile">
+              <i class="fas fa-user-edit" />
+            </Link>
           </div>
 
           <div className="cardbody">
@@ -87,13 +96,14 @@ class BusinessDash extends Component {
                 <p>{phone}</p>
               </p>
             </div>
+          </div>
+          <div className="descriptionDiv">
             <div className="descriptionDiv">
-              <div className="descriptionDiv">
-                <h3>Company Description</h3>
-                <p>{description}</p>
-              </div>
+              <h3>Company Description</h3>
+              <p>{description}</p>
             </div>
           </div>
+
           <div className="editProfile" />
         </div>
 

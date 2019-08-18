@@ -90,5 +90,51 @@ module.exports = {
     console.log(req.session);
     req.session.destroy();
     res.sendStatus(200);
+  },
+  edit: async (req, res) => {
+    const {
+      id,
+      businessName,
+      firstName,
+      lastName,
+      phone,
+      email,
+      description,
+      address,
+      suite,
+      city,
+      state,
+      zip
+    } = req.body;
+    const db = req.app.get("db");
+
+    await db
+      .update_profile([
+        id,
+        businessName,
+        firstName,
+        lastName,
+        phone,
+        email,
+        description,
+        address,
+        suite,
+        city,
+        state,
+        zip
+      ])
+      .catch(err => {
+        console.log(err);
+      });
+
+    let user = await db.get_company([id]).catch(err => {
+      console.log(err + "edit funciton in auth controller line 129");
+    });
+
+    req.session.user = {
+      ...user[0]
+    };
+    delete req.session.user.password;
+    res.status(200).json(req.session.user);
   }
 };

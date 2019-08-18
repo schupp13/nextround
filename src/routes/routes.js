@@ -10,6 +10,7 @@ import PickDrinks from "../components/AddCreator/PickDrinks/PickDrinks";
 import NameAd from "../components/AddCreator/NameAd/NameAd";
 import ConfirmAd from "../components/AddCreator/ConfirmAd/ConfirmAd";
 import UserDash from "../components/UserDash/UserDash";
+import EditProfile from "../components/EditProfile/EditProfile";
 
 export default (
   <Switch>
@@ -23,5 +24,6 @@ export default (
     <Route path="/create-ad/name" component={NameAd} />
     <Route path="/create-ad/confirm" component={ConfirmAd} />
     <Route path="/userDash" component={UserDash} />
+    <Route path="/editProfile" component={EditProfile} />
   </Switch>
 );

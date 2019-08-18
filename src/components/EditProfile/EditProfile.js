@@ -1,73 +1,90 @@
 import React, { Component } from "react";
-import "./BusinessReg.scss";
-import Axios from "axios";
 import { connect } from "react-redux";
+import "./EditProfile.scss";
 import { Redirect } from "react-router-dom";
+import Axios from "axios";
 import { updateUser } from "../../redux/reducers/authReducer";
 
-class BusinessReg extends Component {
+class EditProfile extends Component {
   constructor() {
     super();
+
     this.state = {
       businessName: "",
       firstName: "",
       lastName: "",
       phone: "",
       email: "",
-      password: "",
       description: "",
       address: "",
       suite: "",
       city: "",
       state: "",
-      zip: ""
+      zip: "",
+      toogle: false
     };
   }
-
-  register = e => {
-    e.preventDefault();
-    Axios.post("/auth/register", { ...this.state })
-      .then(res => {
-        console.log(res.data);
-        this.props.updateUser(res.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-    console.log(this.state);
-    this.setState({
-      businessName: "",
-      firstName: "",
-      lastName: "",
-      phone: "",
-      email: "",
-      password: "",
-      description: "",
-      address: "",
-      suite: "",
-      city: "",
-      state: "",
-      zip: ""
-    });
-  };
 
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
   };
+
+  componentDidMount() {
+    let {
+      id,
+      business_name,
+      address,
+      suite,
+      first_name,
+      last_name,
+      description,
+      phone,
+      city,
+      state,
+      zip,
+      email
+    } = this.props.session;
+
+    this.setState({
+      id: id,
+      businessName: business_name,
+      firstName: first_name,
+      lastName: last_name,
+      phone: phone,
+      email: email,
+      description: description,
+      address: address,
+      suite: suite,
+      city: city,
+      state: state,
+      zip: zip
+    });
+  }
+
+  editForm = e => {
+    e.preventDefault();
+
+    Axios.put("/auth/editProfile", this.state)
+      .then(res => {
+        this.props.updateUser(res.data);
+        this.setState({ toggle: !this.state.toggle });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
   render() {
-    console.log(this.state);
-    console.log(this.props);
+    let { business_name, first_name } = this.props.session;
+
     return (
-      <div className={"BusinessReg"}>
-        {this.props.session.business_name ? (
-          <Redirect to={"/businessDash"} />
-        ) : (
-          this.props.session.first_name && <Redirect to={"/userDash"} />
-        )}
-        <form onSubmit={this.register}>
-          <h1 className={"pageHeader"}>Business Registration</h1>
+      <div className="editForm">
+        {this.state.toggle && <Redirect to={"businessDash"} />}
+        {business_name === "" && <Redirect to="/userDash" />}
+        {first_name === "" && <Redirect to="/" />}
+        <form onSubmit={this.editForm} method="put">
+          <h1 className={"pageHeader"}>Edit Profile</h1>
           <h2>Contact Information</h2>
           <label>
             Business Name
@@ -75,7 +92,6 @@ class BusinessReg extends Component {
               value={this.state.businessName}
               onChange={this.handleChange}
               name="businessName"
-              required
             />
           </label>
           <label>
@@ -84,7 +100,6 @@ class BusinessReg extends Component {
               value={this.state.firstName}
               onChange={this.handleChange}
               name="firstName"
-              required
             />
           </label>
           <label>
@@ -93,7 +108,6 @@ class BusinessReg extends Component {
               value={this.state.lastName}
               onChange={this.handleChange}
               name="lastName"
-              required
             />
           </label>
           <label>
@@ -102,7 +116,6 @@ class BusinessReg extends Component {
               value={this.state.phone}
               onChange={this.handleChange}
               name="phone"
-              required
             />
           </label>
           <label>
@@ -112,26 +125,15 @@ class BusinessReg extends Component {
               type="email"
               onChange={this.handleChange}
               name="email"
-              required
             />
           </label>
-          <label>
-            Password
-            <input
-              value={this.state.password}
-              type="password"
-              onChange={this.handleChange}
-              name="password"
-              required
-            />
-          </label>
+
           <label>
             Tell us about the environment
             <textarea
               value={this.state.description}
               onChange={this.handleChange}
               name="description"
-              required
             />
           </label>
           <h2>Address</h2>
@@ -141,27 +143,22 @@ class BusinessReg extends Component {
               value={this.state.address}
               onChange={this.handleChange}
               name="address"
-              required
             />
           </label>
           <label>
             Suite#
             <input
               value={this.state.suite}
-              required
               onChange={this.handleChange}
               name="suite"
-              required
             />
           </label>
           <label>
             City
             <input
               value={this.state.city}
-              required
               onChange={this.handleChange}
               name="city"
-              required
             />
           </label>
           <label>
@@ -228,14 +225,20 @@ class BusinessReg extends Component {
             Zip
             <input
               value={this.state.zip}
-              required
               onChange={this.handleChange}
               name="zip"
-              required
             />
           </label>
           <button className="submitButton" type="submit">
-            Register
+            Update
+          </button>
+          <button
+            className={"submitButton"}
+            onClick={() => {
+              this.setState({ toogle: true });
+            }}
+          >
+            Cancel
           </button>
         </form>
       </div>
@@ -248,8 +251,7 @@ const mapStateToProps = reduxState => {
     session: reduxState.authReducer
   };
 };
-
 export default connect(
   mapStateToProps,
   { updateUser }
-)(BusinessReg);
+)(EditProfile);

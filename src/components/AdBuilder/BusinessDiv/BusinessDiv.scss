@@ -3,22 +3,30 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 50px;
+  margin-bottom: 30px;
 
   .busDescriptionDiv {
     color: white;
-    font-size: 25px;
-    width: 50%
+    font-size: 15px;
+    width: 50%;
+    margin-top: 30px;
+
+    p {
+      padding: 30px;
+    }
   }
 }
 
 @media (max-width: 800px) {
   .bizDiv {
 
+    .cardbody {
+      width: 100%;
+    }
 
     .busDescriptionDiv {
       color: white;
-      font-size: 25px;
+      font-size: 15px;
       width: 100%;
       margin: 0;
 
