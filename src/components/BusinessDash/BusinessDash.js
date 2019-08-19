@@ -60,7 +60,12 @@ class BusinessDash extends Component {
             onClick={() => this.deleteAd(ad.id)}
           />
 
-          <AdBuilder ad={ad} />
+          <AdBuilder
+            id={ad.id}
+            business_id={ad.business_id}
+            business_title={ad.business_title}
+            ad_title={ad.ad_title}
+          />
         </div>
       );
     });

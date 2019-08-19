@@ -1,5 +1,5 @@
 // READ ME: THIS COMPONENT SHOULD RECEIVE ONE AD
-//THIS COMPONENT WILL TAKE CARE OF THE BUSINESS SLIDE ALSO -
+//THIS COMPONENT WILL TAKE CARE OF THE BUSINESS SIDE AND THE USER SIDE TO GENERATE ADS TO THEIR DASHBOARD -
 import React, { Component } from "react";
 import Axios from "axios";
 import "./AdBuilder.scss";
@@ -18,9 +18,9 @@ export default class AdBuilder extends Component {
   }
 
   componentDidMount() {
-    Axios.get(`/api/company/${this.props.ad.business_id}`).then(
+    Axios.get(`/api/company/${this.props.business_id}`).then(
       businessResponse => {
-        Axios.get(`/api/ad/drinks/${this.props.ad.id}`).then(drinksResponse => {
+        Axios.get(`/api/ad/drinks/${this.props.id}`).then(drinksResponse => {
           this.setState({
             business: businessResponse.data[0],
             drinks: drinksResponse.data
@@ -51,7 +51,7 @@ export default class AdBuilder extends Component {
     return (
       <article className={"AdBuilderArticle"}>
         <h1 className={"adTitle"}>
-          {this.props.ad.ad_title} @{this.state.business.business_name}
+          {this.props.ad_title} @{this.state.business.business_name}
         </h1>
         <button name={"drinkToggle"} onClick={this.toggleDrink}>
           <i class="fas fa-cocktail" />

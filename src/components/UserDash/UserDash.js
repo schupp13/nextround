@@ -21,7 +21,7 @@ function UserDash(props) {
         <Map />
       </div>
       <div>
-        <h1>THIS IS WHERE THE ADS WILL GO THATE ARE IN THE vicinity </h1>
+        <h1>THIS IS WHERE THE ADS WILL GO </h1>
       </div>
     </div>
   );
