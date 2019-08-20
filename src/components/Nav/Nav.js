@@ -20,12 +20,7 @@ class Nav extends Component {
     };
   }
 
-  changeLogin = () => {
-    console.log("change login hitting");
-    this.setState({
-      hideLogin: !this.state.hideLogin
-    });
-  };
+  d;
 
   handleClick = () => {
     if (
@@ -60,20 +55,24 @@ class Nav extends Component {
       .catch(err => {
         alert(err);
       });
+    this.handleClick();
   };
 
   render() {
     console.log(this.props);
     return (
       <nav className={"navbar"}>
-        <div>
+        <div className={"header"}>
           <Link to={"/"}>
-            <h1 onClick={this.handleClick}>MusingMe</h1>
+            <h1>NextRound</h1>
           </Link>
         </div>
-        <div className={"hamburger"} onClick={this.handleClick}>
-          <i class="material-icons">menu</i>
-        </div>
+        {this.props.session.first_name && (
+          <div className={"hamburger"} onClick={this.handleClick}>
+            <i class="material-icons">menu</i>
+          </div>
+        )}
+
         <div className={"menuDiv"}>
           {/* this will display the business dash if business name exist */}
           {this.props.session.business_name && (
@@ -85,39 +84,25 @@ class Nav extends Component {
 
           {this.props.session.first_name && !this.props.session.business_name && (
             <Link to={"/userDash"}>
-              <button>User Dash</button>
+              <button>Dashboard</button>
             </Link>
           )}
 
           {/* this will display the anyone that is logged in  */}
-          {this.props.session.first_name ? (
+          {this.props.session.first_name && (
             <button onClick={this.logout}>Logout</button>
-          ) : (
-            <button onClick={this.changeLogin}>Login</button>
-          )}
-          {/* this is a toggle to drop down the login screen*/}
-          {this.state.hideLogin === false ? null : (
-            <div className={"login"}>
-              {" "}
-              <Login changeLogin={this.changeLogin} />
-            </div>
           )}
         </div>
 
-        {/* mobile */}
         <div className={this.state.className}>
-          <Link to={"/businessDash"}>
-            <button onClick={this.handleClick}>Dashboard</button>
-          </Link>
-
-          <button
-            onClick={() => {
-              this.changeLogin();
-              this.handleClick();
-            }}
-          >
-            Login
-          </button>
+          {this.props.session.first_name && !this.props.session.business_name && (
+            <Link to={"/userDash"}>
+              <button onClick={this.handleClick}>Map</button>
+            </Link>
+          )}
+          {this.props.session.first_name && (
+            <button onClick={this.logout}>Logout</button>
+          )}
         </div>
       </nav>
     );

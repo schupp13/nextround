@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import "./Login.scss";
+
 import Video from "../vid/video.mp4";
 import { connect } from "react-redux";
 import { login } from "../../redux/reducers/authReducer";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import Gif from "../../components/vid/loading.gif";
+import UserReg from "../UserReg/UserReg";
 
 class Login extends Component {
   constructor() {
@@ -24,15 +26,17 @@ class Login extends Component {
     e.preventDefault();
     let { email, password } = this.state;
     await this.props.login(email, password); // this returns a promise so I have to make it wait
-    if (!this.props.session.error) {
-      this.props.changeLogin(); // this function is not from redux... it is a function in nav that toggles the login window
-    }
   };
   render() {
     console.log(this.props);
     return (
       <div className={"loginDiv"}>
-        {this.props.session.business_name && <Redirect to="/businessDash" />}
+        {this.props.session.business_name ? (
+          <Redirect to="/businessDash" />
+        ) : this.props.session.first_name ? (
+          <Redirect to="/userDash" />
+        ) : null}
+
         <video id="background-video" loop autoPlay>
           <source src={Video} type="video/mp4" />
         </video>
@@ -61,6 +65,16 @@ class Login extends Component {
               <img src={Gif} className={"loadingImage"} />
             )}
             {this.props.session.error && <p>{this.props.session.error}</p>}
+            <div className={"registerButton"}>
+              <Link to="/businessReg">
+                <button>Start Advertising</button>
+              </Link>
+              <Link to="/userReg">
+                <button>Sign Up</button>
+              </Link>
+
+              <div className={this.state.classname == "signUp"} />
+            </div>
           </form>
         </div>
       </div>

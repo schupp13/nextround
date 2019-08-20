@@ -1,19 +1,88 @@
 @import '../../App.scss';
 
-.UserDashPage {
+.container {
   @include pageCenter(100%);
 
-  h1 {
-    @include pageHeader();
+  padding-top: 70px;
+
+  .backgroundImage {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    background: black;
+
+
+
 
   }
 
-  .userProfile {
-    width: 70%;
-  }
+  .UserDashPage {
+    min-width: 100%;
+    padding-top: 0;
+    z-index: 44;
+    min-height: 100vh;
+    min-width: 100vw;
+    background: rgba(0, 0, 0, 0.6);
+    color: $secondaryColor;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 
-  .mapdiv {
-    width: 70%;
-  }
+    h1 {
+      @include pageHeader();
+      margin: 20px auto;
 
+    }
+
+
+    .userProfile {
+      width: 50%;
+      color: $secondaryColor;
+    }
+
+    .mapdiv {
+      width: 70%;
+      height: 50vh;
+
+      border: 4px solid $secondaryColor;
+
+    }
+
+  }
+}
+
+
+
+@media (max-width: 1126px) {
+  .container {
+    padding-top: 200px;
+    min-width: 100vw;
+
+    .backgroundImage {
+      position: fixed;
+    }
+
+    .UserDashPage {
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      top: -350px;
+
+
+      h1 {}
+
+
+      .userProfile {}
+
+      .mapdiv {
+        width: 90%;
+      }
+
+    }
+  }
 }

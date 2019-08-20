@@ -1,5 +1,6 @@
 import AdBuilder from "../AdBuilder/AdBuilder";
-import { Link } from "react-router-dom";
+import myMarker from "../vid/myMarker.png";
+import { Link, Redirect } from "react-router-dom";
 import CurrentLocation from "./CurrentLocation";
 import React, { Component } from "react";
 import { GoogleApiWrapper, InfoWindow, Marker } from "google-maps-react";
@@ -47,6 +48,7 @@ export class MapContainer extends Component {
     Promise.all(
       //when using promise all it will not let me store the map results to a variable
       this.state.adsAddress.map(business => {
+        console.log(business);
         let string = business.suite
           ? `${business.address} ${business.suite}, ${business.city}, ${
               business.state
@@ -62,9 +64,15 @@ export class MapContainer extends Component {
           }
         })
           .then(response => {
+            console.log(response);
             response.data.results[0].geometry.location.ad_title =
               business.ad_title;
             response.data.results[0].geometry.location.ad_id = business.id;
+
+            response.data.results[0].geometry.location.business_name =
+              business.business_name;
+            response.data.results[0].geometry.location.business_id =
+              business.business_id;
             this.setState({
               coordinates: [
                 ...this.state.coordinates,
@@ -97,36 +105,34 @@ export class MapContainer extends Component {
     this.buildaddress();
   }
 
-  hell = () => {
-    console.log("hello");
-  };
-
   render() {
     console.log(this.state);
     let coordinates = this.state.coordinates.map(local => {
+      console.log(local);
       return (
         <Marker
           onClick={this.customeMarkerClick}
           name={local.ad_title}
           position={local}
+          minWidth="90vw"
+          maxHeight="100%"
+          icon={myMarker}
           content={
-            <div>
-              {" "}
+            <a href={`#/adPage/${local.ad_id}`}>
               <AdBuilder
-                ad_title={local.ad_title}
                 id={local.ad_id}
-                busines_id={local.busines_id}
+                business_id={local.business_id}
+                business_title={local.business_name}
+                ad_title={local.ad_title}
               />
-            </div>
+            </a>
           }
         >
           <InfoWindow
             marker={this.state.activeMarker}
             onClose={this.onClose}
             visible={this.state.showingInfoWindow}
-          >
-            <h2>TESZT</h2>
-          </InfoWindow>
+          />
         </Marker>
       );
     });
@@ -140,8 +146,8 @@ export class MapContainer extends Component {
           onClose={this.onClose}
         >
           <div>
-            <h4>{this.state.selectedPlace.name}</h4>
-            <a>{this.state.selectedPlace.content} </a>
+            <h1>{this.state.selectedPlace.name}</h1>
+            {this.state.selectedPlace.content}
           </div>
         </InfoWindow>
         {coordinates}

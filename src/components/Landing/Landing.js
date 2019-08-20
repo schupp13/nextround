@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import Img from "../Img/Img";
-import { Unsplashed } from "react-unsplash-container";
 
 function Landing(props) {
   return (

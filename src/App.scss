@@ -1,7 +1,7 @@
 /* Color Theme Swatches in Hex */
-$pageBackground: rgb(229, 232, 238);
+$pageBackground: #BFBFBF;
 $secondaryColor: rgb(64, 172, 255);
-$accentColor: #2955D9;
+$accentColor: #0D0D0D;
 $buttonColor: #D99A4E;
 
 
@@ -49,6 +49,8 @@ a {
   }
 }
 
+@mixin mobilePage() {}
+
 /// mixin
 @mixin pageCenter ($pagewidth) {
   display: flex;
@@ -72,7 +74,6 @@ a {
   min-width: 100vw;
   min-height: 100vh;
   background-color: $pageBackground;
-
 }
 
 // refer to mixin with @include flexCenter
