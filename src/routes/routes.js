@@ -28,6 +28,6 @@ export default (
     <Route path="/userDash" component={UserDash} />
     <Route path="/editProfile" component={EditProfile} />
     <Route path="/adPage/:id" component={AdPage} />
-    {/* <Route path="/login" component={Login} /> */}
+    {/* <Route path="/login" component={Login} />  login is my new landing page*/}
   </Switch>
 );

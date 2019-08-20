@@ -20,7 +20,8 @@ function UserDash(props) {
 
         <h1>
           {" "}
-          Hey {props.session.first_name}, please drink responsibly and have fun!
+          Cheers {props.session.first_name}, please drink responsibly and have
+          fun!
         </h1>
         <div className="userProfile" />
         <div className="likes" />

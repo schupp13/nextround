@@ -66,5 +66,15 @@ module.exports = {
       console.log(err);
     });
     res.status(200).json(allAdAdress);
+  },
+  getSingleAd: async (req, res) => {
+    let { id } = req.params;
+    console.log(id);
+    let db = req.app.get("db");
+    let ad = await db.get_ad([id]).catch(err => {
+      console.log(err);
+    });
+    console.log(ad);
+    res.status(200).json(ad);
   }
 };

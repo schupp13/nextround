@@ -46,6 +46,7 @@ app.delete("/api/ads/:id", ADC.deleteAd);
 app.get("/api/company/ads/:id", ADC.getAdsForCompany);
 app.get("/api/getAllAds", ADC.allAds);
 app.get("/api/getAllAdsAddress", ADC.allAdsAddress);
+app.get("/api/ad/:id", ADC.getSingleAd);
 
 //DRINK TABLE
 app.get("/api/ad/drinks/:id", DC.getDrinksForAds);
