@@ -13,6 +13,7 @@ const DC = require("./controllers/drink_controller");
 
 const app = express();
 app.use(express.json());
+app.use(express.static(`${__dirname}/../build`));
 
 massive(CONNECTION_STRING).then(db => {
   app.set("db", db);
@@ -26,7 +27,6 @@ app.use(
     saveUninitialized: true
   })
 );
-app.use(express.static(`${__dirname}/../build`));
 //REGISTER / LOGIN
 app.post("/auth/register", AC.register);
 app.get("/auth/logout", AC.logout);
