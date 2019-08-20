@@ -18,6 +18,8 @@ export default class AdBuilder extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props.id + " this should be the ad id ");
+    console.log(this.props.business_id + " this should be the busienss id ");
     Axios.get(`/api/company/${this.props.business_id}`).then(
       businessResponse => {
         console.log(businessResponse);

@@ -1,0 +1,76 @@
+@import '../../App.scss';
+
+.AdPageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  min-width: 100vw;
+  background-color: black;
+
+  .backgroundImage {
+    position: fixed;
+    z-index: 0;
+    background-color: black;
+  }
+
+  .adDivContainer {
+    z-index: 1;
+    min-height: 100vh;
+    min-width: 100vw;
+    display: flex;
+    flex-direction: center;
+    background: rgba(0, 0, 0, 0.6);
+    align-items: center;
+    justify-content: center;
+
+
+    .adDiv {
+      h1 {
+        font-size: 30px;
+      }
+
+      i {
+        font-size: 35px;
+      }
+
+      width: 80%;
+      border: solid 2px $secondaryColor;
+      border-radius: 15px;
+      margin: 50px 0;
+      z-index: 1;
+
+
+    }
+  }
+
+}
+
+
+@media (max-width: 800px) {
+  .AdPageContainer {
+
+
+    .backgroundImage {
+
+      height: 100vh;
+    }
+
+    .adDivContainer {
+
+
+
+      .adDiv {
+        h1 {}
+
+        i {}
+
+
+
+
+      }
+    }
+
+  }
+}

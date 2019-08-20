@@ -66,7 +66,9 @@ module.exports = {
       });
     } else {
       const db = req.app.get("db");
-      let user = await db.check_for_user([email]);
+      let user = await db.check_for_user([email]).catch(err => {
+        err;
+      });
       if (!user[0]) {
         return res.sendStatus(403);
       }

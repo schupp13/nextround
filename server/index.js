@@ -26,7 +26,7 @@ app.use(
     saveUninitialized: true
   })
 );
-
+app.use(express.static(`${__dirname}/../build`));
 //REGISTER / LOGIN
 app.post("/auth/register", AC.register);
 app.get("/auth/logout", AC.logout);
