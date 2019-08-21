@@ -112,7 +112,8 @@ export class MapContainer extends Component {
       return (
         <Marker
           onClick={this.customeMarkerClick}
-          name={local.ad_title}
+          name={local.business_name}
+          address={local.business_address}
           position={local}
           minWidth="90vw"
           maxHeight="100%"
@@ -147,7 +148,7 @@ export class MapContainer extends Component {
         >
           <div>
             <h1>{this.state.selectedPlace.name}</h1>
-            {this.state.selectedPlace.content}
+            <div>{this.state.selectedPlace.content}</div>
           </div>
         </InfoWindow>
         {coordinates}

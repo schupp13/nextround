@@ -49,6 +49,11 @@
         z-index: 0
       }
 
+      h1 {
+        color: $secondaryColor;
+        margin: 10px;
+      }
+
       label {
         display: flex;
         justify-content: space-between;
@@ -56,6 +61,7 @@
         width: 70%;
         margin: 15px 0;
         color: $secondaryColor;
+        font-size: 20px;
 
 
         input {
@@ -80,6 +86,7 @@
         height: 30px;
         border-radius: 15px;
         border: 2px solid $secondaryColor;
+        font-size: 20px;
       }
 
 

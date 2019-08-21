@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { async } from "q";
 
 const mapStyles = {
   map: {
@@ -120,8 +121,8 @@ export default CurrentLocation;
 CurrentLocation.defaultProps = {
   zoom: 15,
   initialCenter: {
-    lat: -1.2884,
-    lng: 36.8233
+    lat: 32.89748,
+    lng: -97.040443
   },
   centerAroundCurrentLocation: false,
   visible: true

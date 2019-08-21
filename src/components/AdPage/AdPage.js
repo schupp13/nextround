@@ -5,6 +5,15 @@ import AdBuilder from "../AdBuilder/AdBuilder";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import "./AdPage.scss";
+import {
+  FacebookShareButton,
+  TwitterShareButton,
+  EmailShareButton,
+  FacebookIcon,
+  TwitterIcon,
+  EmailIcon,
+  FacebookShareCount
+} from "react-share";
 
 class AdPage extends Component {
   constructor() {
@@ -49,6 +58,20 @@ class AdPage extends Component {
         </div>
         <div className={"adDivContainer"}>
           <div className="adDiv">{cards}</div>
+          <div className="social">
+            <FacebookShareButton
+              children={<FacebookIcon size={70} round={true} />}
+              url={`/adPage/${id}`}
+            />
+            <TwitterShareButton
+              children={<TwitterIcon size={70} round={true} />}
+              url={`/adPage/${id}`}
+            />
+            <EmailShareButton
+              children={<EmailIcon size={70} round={true} />}
+              url={`/adPage/${id}`}
+            />
+          </div>
         </div>
       </div>
     );

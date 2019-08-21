@@ -1,121 +1,144 @@
 @import '../../App.scss';
 
-.BusinessDashPage {
+.BusinessDashPageContainer {
   @include pageCenter(100%);
+  background-color: black;
 
-  h1 {
-    @include pageHeader();
+  .backgroundImage {
+    top: -5px;
+    position: fixed;
+    margin: auto;
+    z-index: 0;
   }
 
+  .BusinessDashPage {
+    @include pageCenter(100%);
+    background-color: black;
 
-  .businessProfile {
-    width: 600px;
-    border: 2px solid $secondaryColor;
-    border-radius: 15px;
-    padding: 10px;
-    margin-bottom: 30px;
-    color: $secondaryColor;
-    background-color: $accentColor;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-
-    .cardheader {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 40px;
-
-      a {
-        font-size: 40px;
-        color: $secondaryColor;
-      }
-
-      a:hover {
-        cursor: pointer;
-      }
-
-      a:active {
-        transform: scale(.8);
-        color: white;
-        cursor: pointer;
-      }
-    }
-
-    button {
-      width: 100px;
-      height: 30px;
-      background-color: $accentColor;
-      border: 2px solid $secondaryColor;
+    h1 {
+      @include pageHeader();
+      z-index: 1;
       color: $secondaryColor;
-      border-radius: 5px;
-
     }
 
-    .cardbody {
-      display: flex;
-      width: 100%;
 
-      .descriptionsDiv,
-      .managerDiv,
-      .addressDiv {
+
+
+    .businessProfile {
+
+      z-index: 1;
+      width: 600px;
+      border: 2px solid $secondaryColor;
+      border-radius: 15px;
+      padding: 10px;
+      margin-bottom: 30px;
+      color: $secondaryColor;
+      background-color: $accentColor;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+
+      .cardheader {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 40px;
+
+        a {
+          font-size: 40px;
+          color: $secondaryColor;
+        }
+
+        a:hover {
+          cursor: pointer;
+        }
+
+        a:active {
+          transform: scale(.8);
+          color: white;
+          cursor: pointer;
+        }
+      }
+
+      button {
+        width: 100px;
+        height: 30px;
+        background-color: $accentColor;
+        border: 2px solid $secondaryColor;
+        color: $secondaryColor;
+        border-radius: 5px;
+
+      }
+
+      .cardbody {
+        z-index: 1;
+        display: flex;
         width: 100%;
 
+        .descriptionsDiv,
+        .managerDiv,
+        .addressDiv {
+          width: 100%;
+          z-index: 1;
 
-      }
-    }
-
-    h2 {
-      font-size: 50px;
-    }
-
-    p {
-      color: white
-    }
-  }
-
-  .adHeader {
-    display: flex;
-    width: 70%;
-    margin: 50px 0px 30px 0px;
-    flex-direction: column;
-    justify-content: center;
-
-    .plusAndHeader {
-      display: flex;
-      margin-bottom: 40px;
-
-      a {
-        color: $secondaryColor;
+        }
       }
 
       h2 {
-        font-size: 30px
+        font-size: 50px;
       }
 
+      p {
+        color: white
+      }
     }
 
-    i {
-      margin-right: 30px;
-      font-size: 35px;
-    }
+    .adHeader {
+      display: flex;
+      width: 70%;
+      margin: 50px 0px 30px 0px;
+      flex-direction: column;
+      justify-content: center;
+      z-index: 1;
 
-    .AdsHeader {}
-
-    .adContainer {
-      background-color: $accentColor;
-      border-radius: 15px;
-      margin: 50px 0;
-
-      .trash {
+      .plusAndHeader {
+        display: flex;
+        margin-bottom: 40px;
         color: $secondaryColor;
-        margin: 20px;
+
+        a {
+          color: $secondaryColor;
+        }
+
+        h2 {
+          font-size: 30px
+        }
+
+      }
+
+      i {
+        margin-right: 30px;
+        font-size: 35px;
+      }
+
+      .AdsHeader {}
+
+      .adContainer {
+        background-color: $accentColor;
+        border-radius: 15px;
+        margin: 50px 0;
+
+        .trash {
+          color: $secondaryColor;
+          margin: 20px;
+        }
       }
     }
   }
 }
+
 
 @media (max-width: 800px) {
   .BusinessDashPage {

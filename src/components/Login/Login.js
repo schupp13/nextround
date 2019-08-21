@@ -42,6 +42,7 @@ class Login extends Component {
         </video>
         <div class="overlay">
           <form onSubmit={this.login}>
+            <h1>Login</h1>
             <label>
               Email:
               <input
