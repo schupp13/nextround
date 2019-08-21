@@ -61,13 +61,21 @@ class AdPage extends Component {
           <div className="social">
             <FacebookShareButton
               children={<FacebookIcon size={70} round={true} />}
-              url={`/adPage/${id}`}
+              url={`http://nextround.club/#/adPage/${id}`}
             />
             <TwitterShareButton
-              children={<TwitterIcon size={70} round={true} />}
+              children={
+                <TwitterIcon
+                  size={70}
+                  round={true}
+                  title={`Special at ${business_name}, let grab a drink`}
+                />
+              }
               url={`/adPage/${id}`}
             />
             <EmailShareButton
+              subject={"Grab a Drink?"}
+              body={`Hey! Let's get a drink at ${business_name}. They are running special - `}
               children={<EmailIcon size={70} round={true} />}
               url={`/adPage/${id}`}
             />
